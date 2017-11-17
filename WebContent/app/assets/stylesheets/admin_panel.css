@@ -1,0 +1,90 @@
+@font-face {
+  font-family: "Gravedigger";
+  src: url('../fonts/gravedigger.otf');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.page-body, nav {
+  padding: 0
+}
+
+.page-body > .row {
+  margin-right: 0;
+}
+
+body {
+  background-color: #F8F8FF;
+}
+
+header {
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+  background-color: #202020;
+  display: table;
+  box-shadow: 0px 5px 10px #888888;
+}
+
+.header-row {
+  padding: 1%;
+}
+
+.logo {
+  color: #DDDDDD;
+  margin: 0 auto;
+  text-align: center;
+  font-family: "Gravedigger";
+  text-shadow: 5px 5px 5px #555555;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 2em;
+}
+
+.current-username {
+  color: white;
+}
+
+.fa-sign-out {
+  padding-left: 3px;
+}
+
+.nav {
+  position: fixed;
+  overflow-x: hidden;
+  overflow-y: auto;
+  bottom: 0;
+  top: 0;
+  padding-top: 6%;
+  background-color: #DDDDDD;
+  width: 15%;
+  border-right: 1px solid #CDCDCD;
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.nav-item > a.active, .nav-item > a.active:hover {
+  color: white;
+  background-color: #4682b4;
+}
+
+.nav-link > span {
+  padding-left: 5%;
+}
+
+.content {
+  margin-top: 7%;
+}
+
+.content > hr {
+  border-color: #DDDDDD;
+}
+
+.form-buttons > a {
+  margin-right: 1%; 
+}

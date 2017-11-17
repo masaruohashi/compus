@@ -1,0 +1,75 @@
+.cart {
+  margin: 2% auto;
+  display: table;
+}
+
+.product-list-header {
+  display: table-row;
+  background-color: #CCCCCC;
+  padding: 5% 5%;
+}
+
+.product-name, .total-message {
+  display: table-cell;
+  width: 65%;
+  padding: 2% 1%;
+}
+
+.product-price, .product-total-price {
+  display: table-cell;
+  width: 20%;
+  padding: 2% 1%;
+}
+
+.product-quantity {
+  display: table-cell;
+  width: 15%;
+  padding: 2% 1%;
+}
+
+.product-row {
+  display: table-row;
+}
+
+.input-quantity {
+  width: 50%;
+}
+
+.total-price-info {
+  display: table-row;
+  border-top: 1px solid #CCCCCC;
+}
+
+.total-message, .product-total-price {
+  font-weight: bold;
+}
+
+.assembling-info {
+  margin-top: 2%;
+  padding: 1%;
+}
+
+.assembling-price-message {
+  color: gray;
+}
+
+.action-buttons {
+  padding-top: 2%;
+  padding-left: 70%;
+}
+
+.btn {
+  text-decoration: none;
+  color: white;
+  padding: 3% 7%;
+  background-color: gray;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: #1E90FF;
+}
+
+.btn-warning {
+  background-color: #FFA500;
+}

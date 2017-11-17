@@ -1,0 +1,17 @@
+.user-form {
+  margin-top: 5%;
+  padding: 2%;
+  background-color: #FEFEFE;
+}
+
+.user-form > .row {
+  padding: 0.5%;
+}
+
+.user-input {
+  width: 75%;
+}
+
+.form-button {
+  width: 100%;
+}
