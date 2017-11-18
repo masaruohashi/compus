@@ -48,7 +48,22 @@ public class EmployeeEditServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		Employee employee = new Employee();
+		employee.setId(Integer.parseInt(request.getParameter("id")));
+	    employee.setName(request.getParameter("name"));
+	    employee.setCpf(request.getParameter("cpf"));
+	    employee.setEmail(request.getParameter("email"));
+	    employee.setRole(request.getParameter("role"));
+	    try {
+	    	if (EmployeeDAO.getInstance().edit(employee)) {
+	    		response.sendRedirect(request.getContextPath() + "/funcionario?msg=Usuario editado com sucesso");
+	    	}
+	    	else {
+	    		doGet(request, response);
+	    	}
+	    } catch (SQLException e) {
+	    	e.printStackTrace();
+	    }
 	}
 
 }

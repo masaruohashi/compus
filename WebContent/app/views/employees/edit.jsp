@@ -54,13 +54,13 @@
         <hr>
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
-            <form class="user-form">
+            <form class="user-form" method="post">
               <div class="row">
                 <div class="col-sm-3">
                   <label>Nome: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" value=<%=employee.getName() %>>
+                  <input class="user-input pull-right" type="text" name="name" value=<%=employee.getName() %>>
                 </div>
               </div>
               <div class="row">
@@ -68,7 +68,7 @@
                   <label>CPF: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" value=<%=employee.getCpf() %>>
+                  <input class="user-input pull-right" type="text" name="cpf" value=<%=employee.getCpf() %>>
                 </div>
               </div>
               <div class="row">
@@ -76,7 +76,7 @@
                   <label>Email: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" value=<%=employee.getEmail() %>>
+                  <input class="user-input pull-right" type="text" name="email" value=<%=employee.getEmail() %>>
                 </div>
               </div>
               <div class="row">
@@ -84,7 +84,7 @@
                   <label>Telefone: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" value="(11) 11111-1111">
+                  <input class="user-input pull-right" type="text" name="phone" value="(11) 11111-1111">
                 </div>
               </div>
               <div class="row">
@@ -92,7 +92,7 @@
                   <label>Endereço: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" value="Rua X, 1234, Butantã">
+                  <input class="user-input pull-right" type="text" name="address" value="Rua X, 1234, Butantã">
                 </div>
               </div>
               <div class="row">
@@ -100,7 +100,7 @@
                   <label>Função: </label>
                 </div>
                 <div class="col-sm-9">
-                  <select class="user-input pull-right">
+                  <select class="user-input pull-right" name="role">
                   	<%for (String role: Employee.ACCEPTED_ROLES) {%>
                     <option value=<%=role %> <%if (employee.getRole().matches(role)) {%> selected <%} %>><%=role %></option>
                     <%} %>
@@ -119,7 +119,7 @@
                 <div class="col-sm-5 col-sm-offset-7">
                   <div class="row">
                     <div class="col-sm-6">
-                      <a href="user_list.html" class="form-button btn btn-warning pull-right">Cancelar</a>
+                      <a href="${pageContext.request.contextPath }/funcionario" class="form-button btn btn-warning pull-right">Cancelar</a>
                     </div>
                     <div class="col-sm-6">
                       <button type="submit" class="form-button btn btn-primary pull-right">Enviar</button>
