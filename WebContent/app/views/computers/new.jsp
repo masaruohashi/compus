@@ -59,7 +59,7 @@
                 <select class="form-control" id="motherboard" name="motherboard">
                   <% for(Motherboard motherboard : motherboards) { %>
                     <option value="<%= motherboard.getId() %>">
-                      <%= motherboard.getName() %> - <%= motherboard.getFormatedPrice() %>
+                      <%= motherboard.getName() %> - R$<%= motherboard.getFormatedPrice() %>
                     </option>
                   <% } %>
                 </select>
@@ -68,7 +68,7 @@
                 <select class="form-control" id="cpu" name="cpu">
                   <% for(Cpu cpu : cpus) { %>
                     <option value="<%= cpu.getId() %>">
-                      <%= cpu.getName() %> - <%= cpu.getFormatedPrice() %>
+                      <%= cpu.getName() %> - R$<%= cpu.getFormatedPrice() %>
                     </option>
                   <% } %>
                 </select>
@@ -79,7 +79,7 @@
                     <select class="form-control col-sm-6" id="memory" name="memory">
                       <% for(Memory memory : memories) { %>
                         <option value="<%= memory.getId() %>">
-                          <%= memory.getName() %> - <%= memory.getFormatedPrice() %>
+                          <%= memory.getName() %> - R$<%= memory.getFormatedPrice() %>
                         </option>
                       <% } %>
                     </select>
@@ -96,7 +96,7 @@
                     <select class="form-control" id="hd">
                       <% for(Hd hd : hds) { %>
                         <option value="<%= hd.getId() %>">
-                          <%= hd.getName() %> - <%= hd.getFormatedPrice() %>
+                          <%= hd.getName() %> - R$<%= hd.getFormatedPrice() %>
                         </option>
                       <% } %>
                     </select>
