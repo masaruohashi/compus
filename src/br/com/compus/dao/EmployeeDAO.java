@@ -67,7 +67,7 @@ public class EmployeeDAO {
 
   public boolean delete(int id) throws SQLException {
     try {
-      String sql = "DELETE * FROM employee WHERE id = ?";
+      String sql = "DELETE FROM employee WHERE id = ?";
       PreparedStatement statement = this.connection.prepareStatement(sql);
       statement.setInt(1, id);
       statement.execute();

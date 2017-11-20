@@ -38,13 +38,4 @@ public class EmployeeServlet extends HttpServlet {
     doGet(request, response);
   }
 
-  protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    int id = Integer.parseInt(request.getParameter("id"));
-    try {
-      EmployeeDAO.getInstance().delete(id);
-      doGet(request, response);
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-  }
 }
