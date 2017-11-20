@@ -7,7 +7,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Compus - Produtos</title>
+  <title>Compus - Processadores</title>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="app/vendor/scripts/jquery.cookie-1.4.1.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
@@ -23,9 +23,9 @@
   <nav>
     <ul class="nav-list">
       <li class="nav-item active"><a href="#">Processador</a></li>
-      <li class="nav-item"><a href="#">Placa-Mãe</a></li>
-      <li class="nav-item"><a href="#">Memória</a></li>
-      <li class="nav-item"><a href="#">HD</a></li>
+      <li class="nav-item"><a href="placas-mae">Placa-Mãe</a></li>
+      <li class="nav-item"><a href="memorias">Memória</a></li>
+      <li class="nav-item"><a href="hds">HD</a></li>
       <li class="nav-item"><a href="#">Computador</a></li>
       <li class="nav-end-request">
         <a href="cart.html">
@@ -50,9 +50,9 @@
         <% } %>
         <% for(Cpu cpu: cpus) { %>
 	        <div class="product">
-	          <img src="https://images.kabum.com.br/produtos/fotos/90447/90447_1500062189_g.jpg">
+	          <img src="app/assets/images/cpu.jpg">
 	          <span class="product-name"><%= cpu.getName() %></span>
-	          <span class="product-price"><%= cpu.getPrice() %></span>
+	          <span class="product-price">R$ <%= cpu.getFormatedPrice() %></span>
 	          <a class="btn btn-primary js-select-button" data-id="<%= cpu.getId() %>">
 	            Selecionar
 	          </a>

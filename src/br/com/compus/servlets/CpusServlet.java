@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.compus.dao.CpuDAO;
 import br.com.compus.models.Cpu;
 
-@WebServlet("/cpu")
+@WebServlet("/processadores")
 public class CpusServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
