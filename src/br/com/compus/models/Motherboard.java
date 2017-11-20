@@ -1,9 +1,11 @@
 package br.com.compus.models;
 
-public class Cpu extends ComputerPart{
+public class Motherboard extends ComputerPart{
   private int id;
   private String name;
   private String socket;
+  private int memorySlots;
+  private String memoryType;
 
   public int getId() {
     return id;
@@ -27,5 +29,21 @@ public class Cpu extends ComputerPart{
 
   public void setSocket(String socket) {
     this.socket = socket;
+  }
+  
+  public int getMemorySlots() {
+    return memorySlots;
+  }
+  
+  public void setMemorySlots(int memorySlots) {
+    this.memorySlots = memorySlots;
+  }
+  
+  public String getMemoryType() {
+    return memoryType;
+  }
+  
+  public void setMemoryType(String memoryType) {
+    this.memoryType = memoryType;
   }
 }

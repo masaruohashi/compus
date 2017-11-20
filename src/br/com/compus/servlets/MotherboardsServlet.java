@@ -11,23 +11,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.compus.dao.CpuDAO;
-import br.com.compus.models.Cpu;
+import br.com.compus.dao.MotherboardDAO;
+import br.com.compus.models.Motherboard;
 
-@WebServlet("/processadores")
-public class CpusServlet extends HttpServlet {
+
+@WebServlet("/placas-mae")
+public class MotherboardsServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  public CpusServlet() {
+  public MotherboardsServlet() {
     super();
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    List<Cpu> cpus = null;
+    List<Motherboard> motherboards = null;
     try {
-      cpus = CpuDAO.getInstance().getAll();
-      request.setAttribute("cpus", cpus);
-      RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/cpus/index.jsp");
+      motherboards = MotherboardDAO.getInstance().getAll();
+      request.setAttribute("motherboards", motherboards);
+      RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/motherboards/index.jsp");
       requestDispatcher.forward(request, response);
     } catch (SQLException e) {
       e.printStackTrace();

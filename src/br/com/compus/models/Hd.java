@@ -1,9 +1,9 @@
 package br.com.compus.models;
 
-public class Cpu extends ComputerPart{
+public class Hd extends ComputerPart{
   private int id;
   private String name;
-  private String socket;
+  private String capacity;
 
   public int getId() {
     return id;
@@ -21,11 +21,11 @@ public class Cpu extends ComputerPart{
     this.name = name;
   }
 
-  public String getSocket() {
-    return socket;
+  public String getCapacity() {
+    return capacity;
   }
 
-  public void setSocket(String socket) {
-    this.socket = socket;
+  public void setCapacity(String capacity) {
+    this.capacity = capacity;
   }
 }

@@ -1,5 +1,5 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="br.com.compus.models.Cpu"%>
+<%@page import="br.com.compus.models.Motherboard"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,7 +7,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Compus - Processadores</title>
+  <title>Compus - Placas-Mãe</title>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="app/vendor/scripts/jquery.cookie-1.4.1.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
@@ -22,8 +22,8 @@
   </header>
   <nav>
     <ul class="nav-list">
-      <li class="nav-item active"><a href="#">Processador</a></li>
-      <li class="nav-item"><a href="placas-mae">Placa-Mãe</a></li>
+      <li class="nav-item"><a href="processadores">Processador</a></li>
+      <li class="nav-item active"><a href="#">Placa-Mãe</a></li>
       <li class="nav-item"><a href="memorias">Memória</a></li>
       <li class="nav-item"><a href="hds">HD</a></li>
       <li class="nav-item"><a href="#">Computador</a></li>
@@ -38,25 +38,25 @@
     </ul>
   </nav>
   <div class="content">
-    <span class="content-header">Processadores</span>
+    <span class="content-header">Placas-Mãe</span>
     <hr class="content-line" />
     <div class="products">
       <div class="product-row">
-        <% List<Cpu> cpus = (ArrayList<Cpu>) request.getAttribute("cpus"); %>
-        <% if(cpus.isEmpty()) { %>
+        <% List<Motherboard> motherboards = (ArrayList<Motherboard>) request.getAttribute("motherboards"); %>
+        <% if(motherboards.isEmpty()) { %>
           <div class="col-sm-12 text-center">
-            <span>Não existem processadores cadastrados!</span>
+            <span>Não existem placas-mãe cadastradas!</span>
           </div>
         <% } %>
-        <% for(Cpu cpu: cpus) { %>
-	        <div class="product">
-	          <img src="app/assets/images/cpu.jpg">
-	          <span class="product-name"><%= cpu.getName() %></span>
-	          <span class="product-price">R$ <%= cpu.getFormatedPrice() %></span>
-	          <a class="btn btn-primary js-select-button" data-id="<%= cpu.getId() %>">
-	            Selecionar
-	          </a>
-	        </div>
+        <% for(Motherboard motherboard: motherboards) { %>
+          <div class="product">
+            <img src="app/assets/images/motherboard.jpg">
+            <span class="product-name"><%= motherboard.getName() %></span>
+            <span class="product-price">R$ <%= motherboard.getFormatedPrice() %></span>
+            <a class="btn btn-primary js-select-button" data-id="<%= motherboard.getId() %>">
+              Selecionar
+            </a>
+          </div>
         <% } %>
       </div>
     </div>
@@ -64,15 +64,15 @@
   <script type="text/javascript">
   $(".js-select-button").click(function() {
     var id = $(this).data("id");
-    var cpu_raw_cookie = $.cookie("cpu_ids");
-    if(cpu_raw_cookie) {
-      var cpu_cookies = cpu_raw_cookie.split(';');
-      if($.inArray(id.toString(), cpu_cookies) == -1) {
-        $.cookie("cpu_ids", $.cookie("cpu_ids") + ";" + id);
+    var motherboard_raw_cookie = $.cookie("motherboard_ids");
+    if(motherboard_raw_cookie) {
+      var motherboard_cookies = motherboard_raw_cookie.split(';');
+      if($.inArray(id.toString(), motherboard_cookies) == -1) {
+        $.cookie("motherboard_ids", $.cookie("motherboard_ids") + ";" + id);
       }
     }
     else {
-      $.cookie("cpu_ids", id);
+      $.cookie("motherboard_ids", id);
     }
   });
   </script>

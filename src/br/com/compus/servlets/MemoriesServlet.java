@@ -11,23 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.compus.dao.CpuDAO;
-import br.com.compus.models.Cpu;
+import br.com.compus.dao.MemoryDAO;
+import br.com.compus.models.Memory;
 
-@WebServlet("/processadores")
-public class CpusServlet extends HttpServlet {
+@WebServlet("/memorias")
+public class MemoriesServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  public CpusServlet() {
+  public MemoriesServlet() {
     super();
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    List<Cpu> cpus = null;
+    List<Memory> memories = null;
     try {
-      cpus = CpuDAO.getInstance().getAll();
-      request.setAttribute("cpus", cpus);
-      RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/cpus/index.jsp");
+      memories = MemoryDAO.getInstance().getAll();
+      request.setAttribute("memories", memories);
+      RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/memories/index.jsp");
       requestDispatcher.forward(request, response);
     } catch (SQLException e) {
       e.printStackTrace();
