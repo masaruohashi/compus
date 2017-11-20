@@ -96,10 +96,6 @@ nav {
   font-size: 1.5em;
 }
 
-.content-line {
-  border: 0.2px inset rgba(0, 0, 0, 0.1);
-}
-
 @media only screen and (max-width: 1600px) {
   nav {
     padding: 2% 10%;
