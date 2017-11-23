@@ -26,7 +26,7 @@
       <li class="nav-item"><a href="placas-mae">Placa-Mãe</a></li>
       <li class="nav-item"><a href="memorias">Memória</a></li>
       <li class="nav-item"><a href="hds">HD</a></li>
-      <li class="nav-item"><a href="#">Computador</a></li>
+      <li class="nav-item"><a href="computadores">Computador</a></li>
       <li class="nav-end-request">
         <a href="cart.html">
           <span class="fa-lg">
