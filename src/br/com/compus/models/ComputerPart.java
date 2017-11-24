@@ -1,13 +1,13 @@
 package br.com.compus.models;
 
 public abstract class ComputerPart {
-  protected float price;
+  protected double price;
 
-  public float getPrice() {
+  public double getPrice() {
     return price;
   }
 
-  public void setPrice(float price) {
+  public void setPrice(double price) {
     this.price = price;
   }
 
