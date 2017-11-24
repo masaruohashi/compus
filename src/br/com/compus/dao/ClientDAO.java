@@ -34,7 +34,7 @@ public class ClientDAO {
         client.setName(result.getString("name"));
         client.setCpf(result.getString("cpf"));
         client.setEmail(result.getString("email"));
-        client.setTel(result.getString("telefone"));
+        client.setTel(result.getString("tel"));
         clients.add(client);
       }
       result.close();
