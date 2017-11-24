@@ -1,7 +1,7 @@
 package br.com.compus.models;
 
-public abstract class ComputerPart {
-  protected float price;
+public abstract class ComputerPart extends Product{
+  private float price;
 
   public float getPrice() {
     return price;
