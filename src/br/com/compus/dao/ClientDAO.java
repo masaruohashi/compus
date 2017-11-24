@@ -47,7 +47,7 @@ public class ClientDAO {
 
   public boolean delete(int id) throws SQLException {
     try {
-      String sql = "DELETE * FROM client WHERE id = ?";
+      String sql = "DELETE FROM client WHERE id = ?";
       PreparedStatement statement = this.connection.prepareStatement(sql);
       statement.setInt(1, id);
       statement.execute();
