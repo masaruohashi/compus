@@ -44,6 +44,7 @@ public class CpuDAO extends BaseDAO{
     try {
       String sql = "SELECT * FROM cpu WHERE id=?";
       PreparedStatement statement = this.connection.prepareStatement(sql);
+      statement.setInt(1, id);
       ResultSet result = statement.executeQuery();
       if(result.next()) {
         cpu = new Cpu();

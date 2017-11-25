@@ -28,7 +28,7 @@
       <li class="nav-item active"><a href="#">HD</a></li>
       <li class="nav-item"><a href="computadores">Computador</a></li>
       <li class="nav-end-request">
-        <a href="cart.html">
+        <a href="carrinho">
           <span class="fa-lg">
             <i class="fa fa-shopping-cart"></i>
           </span>
@@ -52,7 +52,7 @@
           <div class="product">
             <img src="app/assets/images/hd.jpg">
             <span class="product-name"><%= hd.getName() %></span>
-            <span class="product-price">R$ <%= hd.getFormatedPrice() %></span>
+            <span class="product-price">R$ <%= hd.getFormattedPrice() %></span>
             <a class="btn btn-primary js-select-button" data-id="<%= hd.getId() %>">
               Selecionar
             </a>

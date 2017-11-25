@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="br.com.compus.models.Product"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -23,7 +26,7 @@
       <li class="nav-item"><a href="hds">HD</a></li>
       <li class="nav-item"><a href="computadores">Computador</a></li>
       <li class="nav-end-request">
-        <a href="cart.html">
+        <a href="#">
           <span class="fa-lg">
             <i class="fa fa-shopping-cart"></i>
           </span>
@@ -35,7 +38,7 @@
   <div class="content">
     <span class="content-header">Resumo do Pedido</span>
     <hr class="content-line" />
-    <form>
+    <form action="carrinho" method="post">
       <table class="table">
         <thead>
           <tr>
@@ -45,21 +48,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Processador Intel Core i9 7900x 3.3Ghz</td>
-            <td>R$ 4999,99</td>
-            <td><input class="form-control" type="number" value="1" min="1" /></td>
-          </tr>
-          <tr>
-            <td>Processador Intel Core i9 7900x 3.3Ghz</td>
-            <td>R$ 4999,99</td>
-            <td><input class="form-control" type="number" value="1" min="1" /></td>
-          </tr>
-          <tr>
-            <td>Processador Intel Core i9 7900x 3.3Ghz</td>
-            <td>R$ 4999,99</td>
-            <td><input class="form-control" type="number" value="1" min="1" /></td>
-          </tr>
+          <% List<Product> products = (ArrayList<Product>) request.getAttribute("products"); %>
+          <% for(Product product : products) { %>
+	          <tr>
+	            <td><%= product.getName() %></td>
+	            <td>R$ <%= product.getFormattedPrice() %></td>
+	            <td><input class="form-control" type="number" value="1" min="1" /></td>
+	          </tr>
+          <% } %>
         </tbody>
       </table>
       <div class="row">

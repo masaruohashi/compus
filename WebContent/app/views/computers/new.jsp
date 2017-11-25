@@ -29,7 +29,7 @@
       <li class="nav-item"><a href="hds">HD</a></li>
       <li class="nav-item active"><a href="#">Computador</a></li>
       <li class="nav-end-request">
-        <a href="cart.html">
+        <a href="carrinho">
           <span class="fa-lg">
             <i class="fa fa-shopping-cart"></i>
           </span>
@@ -59,7 +59,7 @@
                 <select class="form-control" id="motherboard" name="motherboard">
                   <% for(Motherboard motherboard : motherboards) { %>
                     <option value="<%= motherboard.getId() %>">
-                      <%= motherboard.getName() %> - R$<%= motherboard.getFormatedPrice() %>
+                      <%= motherboard.getName() %> - R$<%=motherboard.getFormattedPrice()%>
                     </option>
                   <% } %>
                 </select>
@@ -68,7 +68,7 @@
                 <select class="form-control" id="cpu" name="cpu">
                   <% for(Cpu cpu : cpus) { %>
                     <option value="<%= cpu.getId() %>">
-                      <%= cpu.getName() %> - R$<%= cpu.getFormatedPrice() %>
+                      <%= cpu.getName() %> - R$<%= cpu.getFormattedPrice() %>
                     </option>
                   <% } %>
                 </select>
@@ -79,7 +79,7 @@
                     <select class="form-control col-sm-6" id="memory" name="memory">
                       <% for(Memory memory : memories) { %>
                         <option value="<%= memory.getId() %>">
-                          <%= memory.getName() %> - R$<%= memory.getFormatedPrice() %>
+                          <%= memory.getName() %> - R$<%= memory.getFormattedPrice() %>
                         </option>
                       <% } %>
                     </select>
@@ -96,7 +96,7 @@
                     <select class="form-control" id="hd">
                       <% for(Hd hd : hds) { %>
                         <option value="<%= hd.getId() %>">
-                          <%= hd.getName() %> - R$<%= hd.getFormatedPrice() %>
+                          <%= hd.getName() %> - R$<%= hd.getFormattedPrice() %>
                         </option>
                       <% } %>
                     </select>

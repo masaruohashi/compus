@@ -10,4 +10,10 @@ public abstract class Product {
   public void setId(int id) {
     this.id = id;
   }
+
+  public abstract String getName();
+
+  public abstract String getFormattedPrice();
+
+  public abstract double getPrice();
 }
