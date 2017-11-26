@@ -28,7 +28,7 @@
       <li class="nav-item"><a href="hds">HD</a></li>
       <li class="nav-item"><a href="computadores">Computador</a></li>
       <li class="nav-end-request">
-        <a href="cart.html">
+        <a href="carrinho">
           <span class="fa-lg">
             <i class="fa fa-shopping-cart"></i>
           </span>
@@ -52,7 +52,7 @@
           <div class="product">
             <img src="app/assets/images/motherboard.jpg">
             <span class="product-name"><%= motherboard.getName() %></span>
-            <span class="product-price">R$ <%= motherboard.getFormatedPrice() %></span>
+            <span class="product-price">R$ <%= motherboard.getFormattedPrice() %></span>
             <a class="btn btn-primary js-select-button" data-id="<%= motherboard.getId() %>">
               Selecionar
             </a>

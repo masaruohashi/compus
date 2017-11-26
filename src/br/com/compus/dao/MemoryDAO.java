@@ -40,4 +40,27 @@ public class MemoryDAO extends BaseDAO {
     }
     return memories;
   }
+
+  public Memory findById(int id) throws SQLException {
+    Memory memory = null;
+    try {
+      String sql = "SELECT * FROM memory WHERE id=?";
+      PreparedStatement statement = this.connection.prepareStatement(sql);
+      statement.setInt(1, id);
+      ResultSet result = statement.executeQuery();
+      if(result.next()) {
+        memory = new Memory();
+        memory.setId(result.getInt("id"));
+        memory.setName(result.getString("name"));
+        memory.setPrice(result.getFloat("price"));
+        memory.setType(result.getString("type"));
+        memory.setCapacity(result.getString("capacity"));
+        result.close();
+        statement.close();
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return memory;
+  }
 }

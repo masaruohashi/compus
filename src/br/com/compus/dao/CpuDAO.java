@@ -38,4 +38,26 @@ public class CpuDAO extends BaseDAO{
     }
     return cpus;
   }
+
+  public Cpu findById(int id) throws SQLException {
+    Cpu cpu = null;
+    try {
+      String sql = "SELECT * FROM cpu WHERE id=?";
+      PreparedStatement statement = this.connection.prepareStatement(sql);
+      statement.setInt(1, id);
+      ResultSet result = statement.executeQuery();
+      if(result.next()) {
+        cpu = new Cpu();
+        cpu.setId(result.getInt("id"));
+        cpu.setName(result.getString("name"));
+        cpu.setPrice(result.getFloat("price"));
+        cpu.setSocket(result.getString("socket"));
+        result.close();
+        statement.close();
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return cpu;
+  }
 }
