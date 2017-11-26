@@ -72,7 +72,7 @@
 	                <td><%= employee.getCpf() %></td>
 	                <td><%= employee.getRole() %></td>
 	                <td>
-	                  <a href="#" class="btn btn-primary">Editar</a>
+	                  <a href="funcionario/editar?id=<%=employee.getId() %>" class="btn btn-primary">Editar</a>
 	                  <a href="#" class="btn btn-danger">Excluir</a>
 	                </td>
 	              </tr>

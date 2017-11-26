@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="br.com.compus.models.Employee"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Compus - Cadastro</title>
-  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <title>Compus - Editar</title>
   <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="../bower_components/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" type="text/css" href="../app/assets/stylesheets/admin_panel.css">
@@ -34,10 +35,10 @@
       <nav class="col-sm-2">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="../funcionario"><span>Listagem de Usuários</span></a>
+            <a class="nav-link" href="registration.html"><span>Cadastro de Usuário</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="registration.html"><span>Cadastro de Usuário</span></a>
+            <a class="nav-link active" href="user_list.html"><span>Listagem de Usuários</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="report.html"><span>Relatório Geral</span></a>
@@ -48,17 +49,18 @@
         </ul>
       </nav>
       <div class="content col-sm-10">
-        <span class="h2">Cadastro de Usuário</span>
+        <span class="h2">Edição de Usuário</span>
+        <%Employee employee = (Employee) request.getAttribute("employee"); %>
         <hr>
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
-            <form class="user-form" action="novo" method="post">
+            <form class="user-form" method="post">
               <div class="row">
                 <div class="col-sm-3">
                   <label>Nome: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="name" />
+                  <input class="user-input pull-right" type="text" name="name" value=<%=employee.getName() %>>
                 </div>
               </div>
               <div class="row">
@@ -66,7 +68,7 @@
                   <label>CPF: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="cpf" />
+                  <input class="user-input pull-right" type="text" name="cpf" value=<%=employee.getCpf() %>>
                 </div>
               </div>
               <div class="row">
@@ -74,7 +76,23 @@
                   <label>Email: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="email" />
+                  <input class="user-input pull-right" type="text" name="email" value=<%=employee.getEmail() %>>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <label>Telefone: </label>
+                </div>
+                <div class="col-sm-9">
+                  <input class="user-input pull-right" type="text" name="phone" value="(11) 11111-1111">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <label>Endereço: </label>
+                </div>
+                <div class="col-sm-9">
+                  <input class="user-input pull-right" type="text" name="address" value="Rua X, 1234, Butantã">
                 </div>
               </div>
               <div class="row">
@@ -83,11 +101,18 @@
                 </div>
                 <div class="col-sm-9">
                   <select class="user-input pull-right" name="role">
-                    <option value="vendedor">Vendedor</option>
-                    <option value="montador">Montador</option>
-                    <option value="estoquista">Estoquista</option>
-                    <option value="administrador">Administrador</option>
+                  	<%for (String role: Employee.ACCEPTED_ROLES) {%>
+                    <option value=<%=role %> <%if (employee.getRole().matches(role)) {%> selected <%} %>><%=role %></option>
+                    <%} %>
                   </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <label>Senha: </label>
+                </div>
+                <div class="col-sm-9">
+                  <input class="user-input pull-right" type="password" value="1234">
                 </div>
               </div>
               <div class="row form-buttons">
@@ -97,7 +122,7 @@
                       <a href="${pageContext.request.contextPath }/funcionario" class="form-button btn btn-warning pull-right">Cancelar</a>
                     </div>
                     <div class="col-sm-6">
-                      <input type="submit" value="Enviar" class="form-button btn btn-primary pull-right" />
+                      <button type="submit" class="form-button btn btn-primary pull-right">Enviar</button>
                     </div>
                   </div>
                 </div>

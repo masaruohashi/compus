@@ -6,7 +6,9 @@ public class Employee {
   private String email;
   private String role;
   private String cpf;
-
+  public static final String[] ACCEPTED_ROLES = {"vendedor", "montador", "estoquista", "administrador"};
+ 
+  
   public int getId() {
     return id;
   }

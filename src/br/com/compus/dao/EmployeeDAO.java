@@ -25,6 +25,7 @@ public class EmployeeDAO extends BaseDAO{
       ResultSet result = statement.executeQuery();
       while(result.next()) {
         Employee employee = new Employee();
+        employee.setId(result.getInt("id"));
         employee.setName(result.getString("name"));
         employee.setCpf(result.getString("cpf"));
         employee.setEmail(result.getString("email"));
@@ -48,6 +49,7 @@ public class EmployeeDAO extends BaseDAO{
       ResultSet result = statement.executeQuery();
       if(result.next()) {
         employee = new Employee();
+        employee.setId(result.getInt("id"));
         employee.setName(result.getString("name"));
         employee.setEmail(result.getString("email"));
         employee.setCpf(result.getString("cpf"));
@@ -89,5 +91,25 @@ public class EmployeeDAO extends BaseDAO{
       e.printStackTrace();
     }
     return false;
+  }
+  
+  public boolean edit (Employee employee) throws SQLException {
+	  String sql = "UPDATE employee " + 
+			  	   "SET name = ?, email = ?, cpf = ?, role = ? " + 
+			  	   "WHERE  id = ?";
+	  try {
+		  PreparedStatement statement = this.connection.prepareStatement(sql);
+		  statement.setString(1, employee.getName());
+		  statement.setString(2, employee.getEmail());
+		  statement.setString(3, employee.getCpf());
+		  statement.setString(4 , employee.getRole());
+		  statement.setInt(5, employee.getId());
+		  statement.execute();
+		  statement.close();
+		  return true;
+	  } catch (SQLException e) {
+		  e.printStackTrace();
+	  }
+	  return false;
   }
 }
