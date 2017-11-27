@@ -13,24 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.compus.dao.EmployeeDAO;
 import br.com.compus.models.Employee;
 
-/**
- * Servlet implementation class EmployeeEditServlet
- */
 @WebServlet("/funcionario/editar")
 public class EmployeeEditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public EmployeeEditServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Employee employee = new Employee();
 		try {
