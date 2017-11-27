@@ -28,7 +28,7 @@ public class MotherboardDAO extends BaseDAO{
         Motherboard motherboard = new Motherboard();
         motherboard.setId(result.getInt("id"));
         motherboard.setName(result.getString("name"));
-        motherboard.setPrice(result.getFloat("price"));
+        motherboard.setPrice(result.getDouble("price"));
         motherboard.setSocket(result.getString("socket"));
         motherboard.setMemorySlots(result.getInt("memory_slots"));
         motherboard.setMemoryType(result.getString("memory_type"));
@@ -53,7 +53,7 @@ public class MotherboardDAO extends BaseDAO{
         motherboard = new Motherboard();
         motherboard.setId(result.getInt("id"));
         motherboard.setName(result.getString("name"));
-        motherboard.setPrice(result.getFloat("price"));
+        motherboard.setPrice(result.getDouble("price"));
         motherboard.setSocket(result.getString("socket"));
         motherboard.setMemorySlots(result.getInt("memory_slots"));
         motherboard.setMemoryType(result.getString("memory_type"));

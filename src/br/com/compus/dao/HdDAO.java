@@ -28,7 +28,7 @@ public class HdDAO extends BaseDAO {
         Hd hd = new Hd();
         hd.setId(result.getInt("id"));
         hd.setName(result.getString("name"));
-        hd.setPrice(result.getFloat("price"));
+        hd.setPrice(result.getDouble("price"));
         hd.setCapacity(result.getString("capacity"));
         hds.add(hd);
       }
@@ -51,7 +51,7 @@ public class HdDAO extends BaseDAO {
         hd = new Hd();
         hd.setId(result.getInt("id"));
         hd.setName(result.getString("name"));
-        hd.setPrice(result.getFloat("price"));
+        hd.setPrice(result.getDouble("price"));
         hd.setCapacity(result.getString("capacity"));
         result.close();
         statement.close();

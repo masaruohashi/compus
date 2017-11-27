@@ -28,7 +28,7 @@ public class MemoryDAO extends BaseDAO {
         Memory memory = new Memory();
         memory.setId(result.getInt("id"));
         memory.setName(result.getString("name"));
-        memory.setPrice(result.getFloat("price"));
+        memory.setPrice(result.getDouble("price"));
         memory.setType(result.getString("type"));
         memory.setCapacity(result.getString("capacity"));
         memories.add(memory);
@@ -52,7 +52,7 @@ public class MemoryDAO extends BaseDAO {
         memory = new Memory();
         memory.setId(result.getInt("id"));
         memory.setName(result.getString("name"));
-        memory.setPrice(result.getFloat("price"));
+        memory.setPrice(result.getDouble("price"));
         memory.setType(result.getString("type"));
         memory.setCapacity(result.getString("capacity"));
         result.close();
