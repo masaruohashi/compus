@@ -40,6 +40,6 @@ public class CpuTest {
   @Test
   public void testFormattedPrice() {
     mockedCpu.setPrice(1.50);
-    assertEquals("1,50", mockedCpu.getFormatedPrice());
+    assertEquals("1,50", mockedCpu.getFormattedPrice());
   }
 }
