@@ -1,20 +1,16 @@
 package br.com.compus.dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.compus.jdbc.ConnectionFactory;
 import br.com.compus.models.Employee;
 
-public class EmployeeDAO {
-  private Connection connection;
-
+public class EmployeeDAO extends BaseDAO{
   public EmployeeDAO() {
-    connection = ConnectionFactory.getConnection();
+    super();
   }
 
   public static EmployeeDAO getInstance() {
