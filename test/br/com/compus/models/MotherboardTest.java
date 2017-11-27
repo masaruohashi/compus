@@ -52,6 +52,6 @@ public class MotherboardTest {
   @Test
   public void testFormattedPrice() {
     mockedMotherboard.setPrice(1.50);
-    assertEquals("1,50", mockedMotherboard.getFormatedPrice());
+    assertEquals("1,50", mockedMotherboard.getFormattedPrice());
   }
 }

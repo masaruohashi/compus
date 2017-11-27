@@ -40,6 +40,6 @@ public class HdTest {
   @Test
   public void testFormattedPrice() {
     mockedHd.setPrice(1.5);
-    assertEquals("1,50", mockedHd.getFormatedPrice());
+    assertEquals("1,50", mockedHd.getFormattedPrice());
   }
 }

@@ -46,6 +46,6 @@ public class MemoryTest {
   @Test
   public void testFormattedPrice() {
     mockedMemory.setPrice(1.50);
-    assertEquals("1,50", mockedMemory.getFormatedPrice());
+    assertEquals("1,50", mockedMemory.getFormattedPrice());
   }
 }
