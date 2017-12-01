@@ -46,7 +46,7 @@
                 <a class="nav-link" href="../cliente"><span>Listagem de Cliente</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-linke" href="../cliente/novo"><span>Cadastro de Cliente</span></a>
+                <a class="nav-link" href="../cliente/novo"><span>Cadastro de Cliente</span></a>
             </li>
           <li class="nav-item">
             <a class="nav-link" href="report.html"><span>Relatório Geral</span></a>

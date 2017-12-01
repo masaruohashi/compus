@@ -67,10 +67,11 @@
                             </div>
                             <div class="col-sm-9">
                                 <% if(request.getParameter("name") != null) { %>
-                                <input class="user-input pull-right" type="text" name="name" value="<%=request.getParameter("name")%>"/>
+                                    <input class="user-input pull-right" type="text" name="name" value="<%=request.getParameter("name")%>"/>
                                 <% }
-                                else %>
-                                <input class="user-input pull-right" type="text" name="name"/>
+                                else { %>
+                                    <input class="user-input pull-right" type="text" name="name"/>
+                                <% } %>
                             </div>
                         </div>
                         <div class="row">
@@ -79,10 +80,11 @@
                             </div>
                             <div class="col-sm-9">
                                 <% if(request.getParameter("cpf") != null) { %>
-                                <input class="cpf user-input pull-right" type="text" name="cpf" value="<%=request.getParameter("cpf")%>" />
+                                    <input class="cpf user-input pull-right" type="text" name="cpf" value="<%=request.getParameter("cpf")%>" />
                                 <% }
-                                else %>
-                                <input class="cpf user-input pull-right"  type="text" name="cpf"/>
+                                else { %>
+                                    <input class="cpf user-input pull-right"  type="text" name="cpf"/>
+                                <% } %>
                             </div>
                         </div>
                         <div class="row">
@@ -91,10 +93,11 @@
                             </div>
                             <div class="col-sm-9">
                                 <% if(request.getParameter("email") != null) { %>
-                                <input class="user-input pull-right" type="text" name="email" value="<%=request.getParameter("email")%>" />
+                                    <input class="user-input pull-right" type="text" name="email" value="<%=request.getParameter("email")%>" />
                                 <% }
-                                else %>
-                                <input class="user-input pull-right" type="text" name="email"/>
+                                else { %>
+                                    <input class="user-input pull-right" type="text" name="email"/>
+                                <% } %>
                             </div>
                         </div>
                         <div class="row">
@@ -103,10 +106,11 @@
                             </div>
                             <div class="col-sm-9">
                                 <% if(request.getParameter("address") != null) { %>
-                                <input class="user-input pull-right" type="text" name="address" value="<%=request.getParameter("address")%>" />
+                                    <input class="user-input pull-right" type="text" name="address" value="<%=request.getParameter("address")%>" />
                                 <% }
-                                else %>
-                                <input class="user-input pull-right" type="text" name="address" />
+                                else { %>
+                                    <input class="user-input pull-right" type="text" name="address" />
+                                <% } %>
                             </div>
                         </div>
                         <div class="row">
@@ -115,10 +119,11 @@
                             </div>
                             <div class="col-sm-9">
                                 <% if(request.getParameter("tel") != null) { %>
-                                <input class="phone user-input pull-right" id="phone" type="text" name="tel" value="<%=request.getParameter("tel")%>" />
+                                    <input class="phone user-input pull-right" id="phone" type="text" name="tel" value="<%=request.getParameter("tel")%>" />
                                 <% }
-                                else %>
-                                <input class="phone user-input pull-right id="phone" type="text" name="tel" />
+                                else { %>
+                                    <input class="phone user-input pull-right" id="phone" type="text" name="tel" />
+                                <% } %>
                             </div>
                         </div>
                         <div class="row form-buttons">

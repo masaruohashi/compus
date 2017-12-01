@@ -36,7 +36,7 @@ public class ClientFormServlet extends HttpServlet {
     }
     else if (!email.matches(".*@.*\\..*")) {
       cliente_valido = false;
-      response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=Insira um email valido&name=" +
+      response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=Insira um e-mail valido&name=" +
               name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&tel=" + tel);
     }
     else if (address.isEmpty()) {
