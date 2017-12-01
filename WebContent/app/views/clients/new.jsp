@@ -5,8 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Compus - Cadastro</title>
-    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../bower_components/jquery/dist/examples.js"></script>
+    <script type="text/javascript" src="../../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../bower_components/jquery/dist/jquery.mask.min.js"></script>
+    <script src="../../../bower_components/jquery/dist/masks.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../bower_components/font-awesome/css/font-awesome.css">
@@ -73,7 +74,7 @@
                                 <label>CPF: </label>
                             </div>
                             <div class="col-sm-9">
-                                <input class="user-input pull-right type="text" name="cpf" />
+                                <input class="cpf user-input pull-right" type="text" name="cpf" />
                             </div>
                         </div>
                         <div class="row">
@@ -97,7 +98,7 @@
                                 <label>Telefone: </label>
                             </div>
                             <div class="col-sm-9">
-                                <input class="user-input pull-right id="phone" type="text" name="tel" />
+                                <input class="phone user-input pull-right" id="phone" type="text" name="tel" />
                             </div>
                         </div>
                         <div class="row form-buttons">
