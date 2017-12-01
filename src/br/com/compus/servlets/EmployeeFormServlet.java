@@ -33,6 +33,8 @@ public class EmployeeFormServlet extends HttpServlet {
     employee.setCpf(request.getParameter("cpf"));
     employee.setEmail(request.getParameter("email"));
     employee.setRole(request.getParameter("role"));
+    employee.setAddress(request.getParameter("address"));
+    employee.setPhone(request.getParameter("phone"));
     try {
       if(EmployeeDAO.getInstance().create(employee)) {
         response.sendRedirect(request.getContextPath() + "/funcionario?msg=Usuario criado com sucesso");

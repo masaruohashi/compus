@@ -6,8 +6,9 @@ public class Employee {
   private String email;
   private String role;
   private String cpf;
+  private String address;
+  private String phone;
   public static final String[] ACCEPTED_ROLES = {"vendedor", "montador", "estoquista", "administrador"};
- 
   
   public int getId() {
     return id;
@@ -47,5 +48,21 @@ public class Employee {
 
   public void setCpf(String cpf) {
     this.cpf = cpf;
+  }
+  
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public String getPhone() {
+    return phone;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
   }
 }

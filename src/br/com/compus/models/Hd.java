@@ -3,8 +3,10 @@ package br.com.compus.models;
 public class Hd extends ComputerPart{
   private String name;
   private String capacity;
+  private String imageUrl;
 
-  public String getName() {
+
+public String getName() {
     return name;
   }
 
@@ -18,5 +20,13 @@ public class Hd extends ComputerPart{
 
   public void setCapacity(String capacity) {
     this.capacity = capacity;
+  }
+  
+  public String getImageUrl() {
+    return imageUrl;
+  }
+  
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 }
