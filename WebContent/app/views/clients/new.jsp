@@ -66,7 +66,11 @@
                                 <label>Nome: </label>
                             </div>
                             <div class="col-sm-9">
-                                <input class="user-input pull-right" type="text" name="name" />
+                                <% if(request.getParameter("name") != null) { %>
+                                <input class="user-input pull-right" type="text" name="name" value="<%=request.getParameter("name")%>"/>
+                                <% }
+                                else %>
+                                <input class="user-input pull-right" type="text" name="name"/>
                             </div>
                         </div>
                         <div class="row">
@@ -74,7 +78,11 @@
                                 <label>CPF: </label>
                             </div>
                             <div class="col-sm-9">
-                                <input class="cpf user-input pull-right" type="text" name="cpf" />
+                                <% if(request.getParameter("cpf") != null) { %>
+                                <input class="cpf user-input pull-right" type="text" name="cpf" value="<%=request.getParameter("cpf")%>" />
+                                <% }
+                                else %>
+                                <input class="cpf user-input pull-right"  type="text" name="cpf"/>
                             </div>
                         </div>
                         <div class="row">
@@ -82,7 +90,11 @@
                                 <label>Email: </label>
                             </div>
                             <div class="col-sm-9">
-                                <input class="user-input pull-right" type="text" name="email" />
+                                <% if(request.getParameter("email") != null) { %>
+                                <input class="user-input pull-right" type="text" name="email" value="<%=request.getParameter("email")%>" />
+                                <% }
+                                else %>
+                                <input class="user-input pull-right" type="text" name="email"/>
                             </div>
                         </div>
                         <div class="row">
@@ -90,6 +102,10 @@
                                 <label>Endereço: </label>
                             </div>
                             <div class="col-sm-9">
+                                <% if(request.getParameter("address") != null) { %>
+                                <input class="user-input pull-right" type="text" name="address" value="<%=request.getParameter("address")%>" />
+                                <% }
+                                else %>
                                 <input class="user-input pull-right" type="text" name="address" />
                             </div>
                         </div>
@@ -98,7 +114,11 @@
                                 <label>Telefone: </label>
                             </div>
                             <div class="col-sm-9">
-                                <input class="phone user-input pull-right" id="phone" type="text" name="tel" />
+                                <% if(request.getParameter("tel") != null) { %>
+                                <input class="phone user-input pull-right" id="phone" type="text" name="tel" value="<%=request.getParameter("tel")%>" />
+                                <% }
+                                else %>
+                                <input class="phone user-input pull-right id="phone" type="text" name="tel" />
                             </div>
                         </div>
                         <div class="row form-buttons">
@@ -118,5 +138,26 @@
             </div>
         </div>
     </div>
+<% if(request.getParameter("msg") != null) { %>
+    <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="messageModalLabel">Mensagem</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <%= request.getParameter("msg") %>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>$('#messageModal').modal({show: true})</script>
+<% } %>
 </body>
 </html>
