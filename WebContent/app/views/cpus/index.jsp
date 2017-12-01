@@ -71,7 +71,7 @@
          </button>
        </div>
        <div class="modal-body">
-         CPU adicionado ao carrinho com sucesso!
+         Processador adicionado ao carrinho com sucesso!
        </div>
        <div class="modal-footer">
          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
