@@ -22,41 +22,41 @@ public class ClientFormServlet extends HttpServlet {
     String address = request.getParameter("address");
     String tel = request.getParameter("tel");
 
-    boolean cliente_valido = true;
+    boolean client_valid = true;
 
     if (name.matches(".*\\d+.*") || name.isEmpty()) {
-      cliente_valido = false;
+      client_valid = false;
       response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=Insira um nome valido&name=" +
                             name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&tel=" + tel);
     }
     else if (cpf.isEmpty() || cpf.length() != "222.222.222-22".length()) {
-      cliente_valido = false;
+      client_valid = false;
       response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=Insira um cpf valido&name=" +
               name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&tel=" + tel);
     }
     else if (!email.matches(".*@.*\\..*")) {
-      cliente_valido = false;
+      client_valid = false;
       response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=Insira um e-mail valido&name=" +
               name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&tel=" + tel);
     }
     else if (address.isEmpty()) {
-      cliente_valido = false;
+      client_valid = false;
       response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=Insira um endereco valido&name=" +
               name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&tel=" + tel);
     }
     else if (tel.isEmpty() || tel.length() != "(22) 2222-2222".length()) {
-      cliente_valido = false;
+      client_valid = false;
       response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=Insira um tel valido&name=" +
               name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&tel=" + tel);
     }
 
-    if (cliente_valido) {
+    if (client_valid) {
       Client client = new Client();
-      client.setName(request.getParameter("name"));
-      client.setCpf(request.getParameter("cpf"));
-      client.setEmail(request.getParameter("email"));
-      client.setAddress(request.getParameter("address"));
-      client.setTel(request.getParameter("tel"));
+      client.setName(name);
+      client.setCpf(cpf);
+      client.setEmail(email);
+      client.setAddress(address);
+      client.setTel(tel);
 
       try {
         if (ClientDAO.getInstance().create(client)) {
