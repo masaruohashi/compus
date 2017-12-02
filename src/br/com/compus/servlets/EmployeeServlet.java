@@ -23,12 +23,24 @@ public class EmployeeServlet extends HttpServlet {
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    List<Employee> employees = null;
+    
+    String id = (request.getParameter("id"));
     try {
-      employees = EmployeeDAO.getInstance().getAll();
-      request.setAttribute("employees", employees);
-      RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/employees/index.jsp");
-      requestDispatcher.forward(request, response);
+      if (id != null) {
+        Employee employee = new Employee();
+        employee = EmployeeDAO.getInstance().findById(Integer.parseInt(id));
+        System.out.println(employee.getName());
+        request.setAttribute("employee", employee);
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/employees/view.jsp");
+        requestDispatcher.forward(request, response);
+      }
+      else {
+      	List<Employee> employees = null;
+      	employees = EmployeeDAO.getInstance().getAll();
+      	request.setAttribute("employees", employees);
+      	RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/employees/index.jsp");
+      	requestDispatcher.forward(request, response);
+      }
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -38,13 +50,4 @@ public class EmployeeServlet extends HttpServlet {
     doGet(request, response);
   }
 
-  protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    int id = Integer.parseInt(request.getParameter("id"));
-    try {
-      EmployeeDAO.getInstance().delete(id);
-      doGet(request, response);
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-  }
 }

@@ -78,8 +78,9 @@
 	                <td><%= employee.getCpf() %></td>
 	                <td><%= employee.getRole() %></td>
 	                <td>
-	                  <a href="#" class="btn btn-primary">Editar</a>
-	                  <a href="#" class="btn btn-danger">Excluir</a>
+                    <a href="funcionario?id=<%=employee.getId() %>" class="btn btn-primary">Visualizar</a>
+	                  <a href="funcionario/editar?id=<%=employee.getId() %>" class="btn btn-warning">Editar</a>
+	                  <a href="funcionario/deletar?id=<%=employee.getId() %>" class="btn btn-danger">Excluir</a>
 	                </td>
 	              </tr>
               <% } %>

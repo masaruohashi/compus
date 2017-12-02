@@ -1,20 +1,16 @@
 package br.com.compus.dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.compus.jdbc.ConnectionFactory;
 import br.com.compus.models.Employee;
 
-public class EmployeeDAO {
-  private Connection connection;
-
+public class EmployeeDAO extends BaseDAO{
   public EmployeeDAO() {
-    connection = ConnectionFactory.getConnection();
+    super();
   }
 
   public static EmployeeDAO getInstance() {
@@ -29,6 +25,7 @@ public class EmployeeDAO {
       ResultSet result = statement.executeQuery();
       while(result.next()) {
         Employee employee = new Employee();
+        employee.setId(result.getInt("id"));
         employee.setName(result.getString("name"));
         employee.setCpf(result.getString("cpf"));
         employee.setEmail(result.getString("email"));
@@ -52,6 +49,7 @@ public class EmployeeDAO {
       ResultSet result = statement.executeQuery();
       if(result.next()) {
         employee = new Employee();
+        employee.setId(result.getInt("id"));
         employee.setName(result.getString("name"));
         employee.setEmail(result.getString("email"));
         employee.setCpf(result.getString("cpf"));
@@ -65,7 +63,7 @@ public class EmployeeDAO {
 
   public boolean delete(int id) throws SQLException {
     try {
-      String sql = "DELETE * FROM employee WHERE id = ?";
+      String sql = "DELETE FROM employee WHERE id = ?";
       PreparedStatement statement = this.connection.prepareStatement(sql);
       statement.setInt(1, id);
       statement.execute();
@@ -86,6 +84,26 @@ public class EmployeeDAO {
       statement.setString(2, employee.getEmail());
       statement.setString(3, employee.getCpf());
       statement.setString(4, employee.getRole());
+      statement.execute();
+      statement.close();
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
+  
+  public boolean edit (Employee employee) throws SQLException {
+    String sql = "UPDATE employee " + 
+             "SET name = ?, email = ?, cpf = ?, role = ? " + 
+             "WHERE  id = ?";
+    try {
+      PreparedStatement statement = this.connection.prepareStatement(sql);
+      statement.setString(1, employee.getName());
+      statement.setString(2, employee.getEmail());
+      statement.setString(3, employee.getCpf());
+      statement.setString(4 , employee.getRole());
+      statement.setInt(5, employee.getId());
       statement.execute();
       statement.close();
       return true;
