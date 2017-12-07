@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.compus.controller.EmployeeController;
 import br.com.compus.dao.EmployeeDAO;
 import br.com.compus.models.Employee;
 
@@ -58,10 +59,15 @@ public class EmployeeFormServlet extends HttpServlet {
       employee.setEmail(email);
       employee.setRole(role);
       try {
-        if (EmployeeDAO.getInstance().create(employee)) {
-          response.sendRedirect(request.getContextPath() + "/funcionario?msg=Usuario criado com sucesso");
-        } else {
-          doGet(request, response);
+        if(EmployeeController.checkExistingEmployee(cpf)) {
+          response.sendRedirect(request.getContextPath() + "/funcionario?msg=CPF ja cadastrado");
+        }
+        else {
+          if (EmployeeDAO.getInstance().create(employee)) {
+            response.sendRedirect(request.getContextPath() + "/funcionario?msg=Usuario criado com sucesso");
+          } else {
+            doGet(request, response);
+          }
         }
       } catch (SQLException e) {
         e.printStackTrace();
