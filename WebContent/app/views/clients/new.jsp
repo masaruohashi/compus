@@ -118,11 +118,11 @@
                                 <label>Telefone: </label>
                             </div>
                             <div class="col-sm-9">
-                                <% if(request.getParameter("tel") != null) { %>
-                                    <input class="phone user-input pull-right" id="phone" type="text" name="tel" value="<%=request.getParameter("tel")%>" />
+                                <% if(request.getParameter("phone") != null) { %>
+                                    <input class="phone user-input pull-right" id="phone" type="text" name="phone" value="<%=request.getParameter("phone")%>" />
                                 <% }
                                 else { %>
-                                    <input class="phone user-input pull-right" id="phone" type="text" name="tel" />
+                                    <input class="phone user-input pull-right" id="phone" type="text" name="phone" />
                                 <% } %>
                             </div>
                         </div>

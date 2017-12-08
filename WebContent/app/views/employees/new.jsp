@@ -93,7 +93,7 @@
                   <label>Email: </label>
                 </div>
                 <div class="col-sm-9">
-                  <% if(request.getParameter("cpf") != null) { %>
+                  <% if(request.getParameter("email") != null) { %>
                     <input class="user-input pull-right" type="text" name="email" value="<%=request.getParameter("email")%>"/>
                   <% }
                   else { %>

@@ -20,34 +20,34 @@ public class ClientFormServlet extends HttpServlet {
     String cpf = request.getParameter("cpf");
     String email = request.getParameter("email");
     String address = request.getParameter("address");
-    String tel = request.getParameter("tel");
+    String phone = request.getParameter("phone");
 
     boolean client_valid = true;
 
     if (name.matches(".*\\d+.*") || name.isEmpty()) {
       client_valid = false;
       response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=Insira um nome valido&name=" +
-                            name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&tel=" + tel);
+                            name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&phone=" + phone);
     }
     else if (cpf.isEmpty() || cpf.length() != "222.222.222-22".length()) {
       client_valid = false;
       response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=Insira um cpf valido&name=" +
-              name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&tel=" + tel);
+              name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&phone=" + phone);
     }
     else if (!email.matches(".*@.*\\..*")) {
       client_valid = false;
       response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=Insira um e-mail valido&name=" +
-              name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&tel=" + tel);
+              name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&phone=" + phone);
     }
     else if (address.isEmpty()) {
       client_valid = false;
       response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=Insira um endereco valido&name=" +
-              name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&tel=" + tel);
+              name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&phone=" + phone);
     }
-    else if (tel.isEmpty() || tel.length() != "(22) 2222-2222".length()) {
+    else if (phone.isEmpty() || phone.length() != "(22) 2222-2222".length()) {
       client_valid = false;
       response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=Insira um tel valido&name=" +
-              name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&tel=" + tel);
+              name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&phone=" + phone);
     }
 
     if (client_valid) {
@@ -56,7 +56,7 @@ public class ClientFormServlet extends HttpServlet {
       client.setCpf(cpf);
       client.setEmail(email);
       client.setAddress(address);
-      client.setTel(tel);
+      client.setTel(phone);
 
       try {
         if (ClientDAO.getInstance().create(client)) {

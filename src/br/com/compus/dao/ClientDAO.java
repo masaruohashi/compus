@@ -11,11 +11,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientDAO {
-  private Connection connection;
-
+public class ClientDAO extends BaseDAO {
   public ClientDAO() {
-    connection = ConnectionFactory.getConnection();
+    super();
   }
 
   public static ClientDAO getInstance() {
@@ -34,7 +32,7 @@ public class ClientDAO {
         client.setName(result.getString("name"));
         client.setCpf(result.getString("cpf"));
         client.setEmail(result.getString("email"));
-        client.setTel(result.getString("tel"));
+        client.setTel(result.getString("phone"));
         clients.add(client);
       }
       result.close();
@@ -60,7 +58,7 @@ public class ClientDAO {
   }
 
   public boolean create(Client client) throws SQLException {
-    String sql = "INSERT INTO client (name, email, cpf, address, tel)" +
+    String sql = "INSERT INTO client (name, email, cpf, address, phone)" +
             "VALUES (?, ?, ?, ?, ?)";
     try {
       PreparedStatement statement = this.connection.prepareStatement(sql);
