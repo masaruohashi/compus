@@ -37,13 +37,13 @@
       <nav class="col-sm-2">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="../funcionario"><span>Listagem de Usuários</span></a>
+            <a class="nav-link" href="../funcionario"><span>Listagem de Funcionários</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="../funcionario/novo"><span>Cadastro de Usuário</span></a>
+            <a class="nav-link active" href="../funcionario/novo"><span>Cadastro de Funcionário</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../cliente"><span>Listagem de Cliente</span></a>
+            <a class="nav-link" href="../cliente"><span>Listagem de Clientes</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../cliente/novo"><span>Cadastro de Cliente</span></a>
@@ -57,7 +57,7 @@
         </ul>
       </nav>
       <div class="content col-sm-10">
-        <span class="h2">Cadastro de Usuário</span>
+        <span class="h2">Cadastro de Funcionário</span>
         <hr>
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
