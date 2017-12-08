@@ -36,10 +36,16 @@
       <nav class="col-sm-2">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link active" href="${pageContext.request.contextPath }/funcionario"><span>Listagem de Usuários</span></a>
+            <a class="nav-link active" href="../funcionario"><span>Listagem de Funcionários</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath }/funcionario/novo"><span>Cadastro de Usuário</span></a>
+            <a class="nav-link" href="../funcionario/novo"><span>Cadastro de Funcionário</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../cliente"><span>Listagem de Clientes</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../cliente/novo"><span>Cadastro de Cliente</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"><span>Relatório Geral</span></a>

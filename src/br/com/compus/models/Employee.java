@@ -9,7 +9,7 @@ public class Employee {
   private String address;
   private String phone;
   public static final String[] ACCEPTED_ROLES = {"vendedor", "montador", "estoquista", "administrador"};
-  
+
   public int getId() {
     return id;
   }
@@ -49,7 +49,7 @@ public class Employee {
   public void setCpf(String cpf) {
     this.cpf = cpf;
   }
-  
+
   public String getAddress() {
     return address;
   }
