@@ -33,6 +33,8 @@ public class EmployeeFormServlet extends HttpServlet {
     String cpf   = request.getParameter("cpf");
     String email = request.getParameter("email");
     String role  = request.getParameter("role");
+		String address = request.getParameter("address");
+		String phone = request.getParameter("phone");
 
     boolean emploee_valid = true;
 
@@ -58,6 +60,8 @@ public class EmployeeFormServlet extends HttpServlet {
       employee.setCpf(cpf);
       employee.setEmail(email);
       employee.setRole(role);
+			employee.setAddress(address);
+			employee.setPhone(phone);
       try {
         if(EmployeeController.checkExistingEmployee(cpf)) {
           response.sendRedirect(request.getContextPath() + "/funcionario?msg=CPF ja cadastrado");

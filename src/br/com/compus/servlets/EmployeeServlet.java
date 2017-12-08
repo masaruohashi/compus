@@ -29,7 +29,7 @@ public class EmployeeServlet extends HttpServlet {
       if (id != null) {
         Employee employee = new Employee();
         employee = EmployeeDAO.getInstance().findById(Integer.parseInt(id));
-        System.out.println(employee.getName());
+        System.out.println(employee.getPhone());
         request.setAttribute("employee", employee);
         RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/employees/view.jsp");
         requestDispatcher.forward(request, response);

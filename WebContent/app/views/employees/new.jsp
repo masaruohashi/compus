@@ -37,27 +37,27 @@
       <nav class="col-sm-2">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="../funcionario"><span>Listagem de Usuários</span></a>
+            <a class="nav-link" href="../funcionario"><span>Listagem de Funcionários</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="../funcionario/novo"><span>Cadastro de Usuário</span></a>
+            <a class="nav-link active" href="../funcionario/novo"><span>Cadastro de Funcionário</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../cliente"><span>Listagem de Cliente</span></a>
+            <a class="nav-link" href="../cliente"><span>Listagem de Clientes</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../cliente/novo"><span>Cadastro de Cliente</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="report.html"><span>Relatório Geral</span></a>
+            <a class="nav-link" href=""><span>Relatório Geral</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><span>Relatório Individual</span></a>
+            <a class="nav-link" href=""><span>Relatório Individual</span></a>
           </li>
         </ul>
       </nav>
       <div class="content col-sm-10">
-        <span class="h2">Cadastro de Usuário</span>
+        <span class="h2">Cadastro de Funcionário</span>
         <hr>
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
@@ -93,12 +93,28 @@
                   <label>Email: </label>
                 </div>
                 <div class="col-sm-9">
-                  <% if(request.getParameter("cpf") != null) { %>
+                  <% if(request.getParameter("email") != null) { %>
                     <input class="user-input pull-right" type="text" name="email" value="<%=request.getParameter("email")%>"/>
                   <% }
                   else { %>
                     <input class="user-input pull-right" type="text" name="email" />
                   <% } %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <label>Endereço: </label>
+                </div>
+                <div class="col-sm-9">
+                  <input class="user-input pull-right" type="text" name="address" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <label>Telefone: </label>
+                </div>
+                <div class="col-sm-9">
+                  <input class="user-input pull-right" type="text" name="phone" />
                 </div>
               </div>
               <div class="row">

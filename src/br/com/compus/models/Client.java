@@ -5,7 +5,7 @@ public class Client {
   private String cpf;
   private String address;
   private String email;
-  private String tel;
+  private String phone;
 
   public String getName() {
     return this.name;
@@ -39,11 +39,11 @@ public class Client {
     this.email = email;
   }
 
-  public String getTel() {
-    return this.tel;
+  public String getPhone() {
+    return this.phone;
   }
 
-  public void setTel(String tel) {
-    this.tel = tel;
+  public void setPhone(String phone) {
+    this.phone = phone;
   }
 }

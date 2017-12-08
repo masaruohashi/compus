@@ -3,6 +3,7 @@ package br.com.compus.models;
 public class Cpu extends ComputerPart{
   private String name;
   private String socket;
+  private String imageUrl;
 
   public String getName() {
     return name;
@@ -18,5 +19,13 @@ public class Cpu extends ComputerPart{
 
   public void setSocket(String socket) {
     this.socket = socket;
+  }
+  
+  public String getImageUrl() {
+	return imageUrl;
+  }
+
+  public void setImageUrl(String imageUrl) {
+	this.imageUrl = imageUrl;
   }
 }
