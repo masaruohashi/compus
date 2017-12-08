@@ -54,122 +54,26 @@
             <table class="table" align="right">
               <thead>
                 <tr>
-                  <th>Componete</th>
-                  <th>Quantidade vendida</th>
+                  <th>Data</th>
+                  <th>Quantidade de vendas</th>
                   <th>Montante Bruto</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Processador Core i9</td>
-                  <td>2</td>
-                  <td>R$ 2,00</td>
-                </tr>
-                <tr>
-                  <td>Processador Core i7</td>
-                  <td>4</td>
-                  <td>R$ 1,20</td>
-                </tr>
-                <tr>
-                  <td>Placa-Mãe</td>
-                  <td>8</td>
-                  <td>R$ 4,07</td>
-                </tr>
-                <tr>
-                  <td>Memória</td>
-                  <td>18</td>
-                  <td>R$ 7,32</td>
-                </tr>
-                <tr>
-                  <td>HD</td>
-                  <td>23</td>
-                  <td>R$ 9,42</td>
-                </tr>
-              </tbody>
-            </table>
-            <table class="table" align="right">
-              <thead>
-                <tr>
-                  <th>Funcionário</th>
-                  <th>Componente</th>
-                  <th>Quantidade vendidas</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>John</td>
-                  <td>Processador Core i9</td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>Processador Core i7</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>Placa-Mãe</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>Memória</td>
-                  <td>6</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>HD</td>
-                  <td>5</td>
-                </tr>
-                <tr>
-                  <td>Mary</td>
-                  <td>Processador Core i9</td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>Processador Core i7</td>
-                  <td>2</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>Placa-Mãe</td>
-                  <td>4</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>Memória</td>
-                  <td>5</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>HD</td>
-                  <td>7</td>
-                </tr>
-                <tr>
-                  <td>July</td>
-                  <td>Processador Core i9</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>Processador Core i7</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>Placa-Mãe</td>
+                  <td>10/01/2017</td>
                   <td>3</td>
+                  <td>R$ 2200,00</td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td>Memória</td>
+                  <td>12/01/2017</td>
                   <td>4</td>
+                  <td>R$ 2500,00</td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td>HD</td>
-                  <td>8</td>
+                  <td>15/01/2017</td>
+                  <td>3</td>
+                  <td>R$ 2300,00</td>
                 </tr>
               </tbody>
             </table>
