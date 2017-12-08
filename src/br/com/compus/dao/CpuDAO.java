@@ -29,6 +29,7 @@ public class CpuDAO extends BaseDAO{
         cpu.setName(result.getString("name"));
         cpu.setPrice(result.getDouble("price"));
         cpu.setSocket(result.getString("socket"));
+        cpu.setImageUrl(result.getString("image_url"));
         cpus.add(cpu);
       }
       result.close();
@@ -52,6 +53,7 @@ public class CpuDAO extends BaseDAO{
         cpu.setName(result.getString("name"));
         cpu.setPrice(result.getDouble("price"));
         cpu.setSocket(result.getString("socket"));
+        cpu.setImageUrl(result.getString("image_url"));
         result.close();
         statement.close();
       }

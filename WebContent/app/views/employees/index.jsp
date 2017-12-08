@@ -7,7 +7,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Compus - Usuários</title>
+  <title>Compus - Funcionários</title>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
@@ -37,13 +37,19 @@
       <nav class="col-sm-2">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link active" href="funcionario"><span>Listagem de Usuários</span></a>
+            <a class="nav-link active" href="../funcionario"><span>Listagem de Funcionários</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="funcionario/novo"><span>Cadastro de Usuário</span></a>
+            <a class="nav-link" href="../funcionario/novo"><span>Cadastro de Funcionário</span></a>
           </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../cliente"><span>Listagem de Clientes</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../cliente/novo"><span>Cadastro de Cliente</span></a>
+            </li>
           <li class="nav-item">
-            <a class="nav-link" href="report.html"><span>Relatório Geral</span></a>
+            <a class="nav-link" href="#"><span>Relatório Geral</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"><span>Relatório Individual</span></a>

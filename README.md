@@ -12,7 +12,7 @@ This section helps to install and configure the project and the development envi
 ### Setup
 *  Import the project
 *  Add the Tomcat 8 to the Targeted Runtimes
-*  Update the database connection settings, changing the ConnectionFactory class
+*  Update the database connection settings, changing the ```ConnectionFactory``` class
 *  Add the database connector driver to the lib
 *  Create the database
 *  Build the project and Run on Server

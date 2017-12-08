@@ -3,6 +3,7 @@ package br.com.compus.models;
 public class Memory extends ComputerPart{
   private String type;
   private String capacity;
+  private String imageUrl;
 
   public Memory() {
     super();
@@ -33,5 +34,13 @@ public class Memory extends ComputerPart{
 
   public String productType() {
     return "memory";
+  }
+  
+  public String getImageUrl() {
+    return imageUrl;
+  }
+  
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 }

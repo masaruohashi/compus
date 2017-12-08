@@ -2,6 +2,8 @@ package br.com.compus.models;
 
 public class Hd extends ComputerPart{
   private String capacity;
+  private String imageUrl;
+
 
   public Hd() {
     super();
@@ -23,5 +25,13 @@ public class Hd extends ComputerPart{
 
   public String productType() {
     return "hd";
+  }
+  
+  public String getImageUrl() {
+    return imageUrl;
+  }
+  
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 }

@@ -28,21 +28,48 @@ public class EmployeeFormServlet extends HttpServlet {
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    Employee employee = new Employee();
-    employee.setName(request.getParameter("name"));
-    employee.setCpf(request.getParameter("cpf"));
-    employee.setEmail(request.getParameter("email"));
-    employee.setRole(request.getParameter("role"));
-    try {
-      if(EmployeeDAO.getInstance().create(employee)) {
-        response.sendRedirect(request.getContextPath() + "/funcionario?msg=Usuario criado com sucesso");
-      }
-      else {
-        doGet(request, response);
-      }
+    String name  = request.getParameter("name");
+    String cpf   = request.getParameter("cpf");
+    String email = request.getParameter("email");
+    String role  = request.getParameter("role");
+		String address = request.getParameter("address");
+		String phone = request.getParameter("phone");
+
+    boolean emploee_valid = true;
+
+    if (name.matches(".*\\d+.*") || name.isEmpty()) {
+      emploee_valid = false;
+      response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=Insira um nome valido&name=" +
+                            name + "&cpf=" + cpf + "&email=" + email + "&role=" + role);
     }
-    catch (SQLException e) {
-      e.printStackTrace();
+    else if (cpf.isEmpty() || cpf.length() != "222.222.222-22".length()) {
+      emploee_valid = false;
+      response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=Insira um cpf valido&name=" +
+              name + "&cpf=" + cpf + "&email=" + email + "&role=" + role);
+    }
+    else if (!email.matches("..*@.*\\...*.")) {
+      emploee_valid = false;
+      response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=Insira um e-mail valido&name=" +
+              name + "&cpf=" + cpf + "&email=" + email + "&role=" + role);
+    }
+
+    if (emploee_valid) {
+      Employee employee = new Employee();
+      employee.setName(name);
+      employee.setCpf(cpf);
+      employee.setEmail(email);
+      employee.setRole(role);
+			employee.setAddress(address);
+			employee.setPhone(phone);
+      try {
+        if (EmployeeDAO.getInstance().create(employee)) {
+          response.sendRedirect(request.getContextPath() + "/funcionario?msg=Usuario criado com sucesso");
+        } else {
+          doGet(request, response);
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
     }
   }
 }

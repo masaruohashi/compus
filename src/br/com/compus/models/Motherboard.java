@@ -4,6 +4,7 @@ public class Motherboard extends ComputerPart{
   private String socket;
   private int memorySlots;
   private String memoryType;
+  private String imageUrl;
 
   public Motherboard() {
     super();
@@ -43,5 +44,13 @@ public class Motherboard extends ComputerPart{
 
   public String productType() {
     return "motherboard";
+  }
+  
+  public String getImageUrl() {
+    return imageUrl;
+  }
+  
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 }
