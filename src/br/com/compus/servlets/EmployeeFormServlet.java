@@ -2,6 +2,7 @@ package br.com.compus.servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.compus.controller.EmployeeController;
+import br.com.compus.controller.ValidateInputData;
 import br.com.compus.dao.EmployeeDAO;
 import br.com.compus.models.Employee;
 
@@ -29,6 +31,8 @@ public class EmployeeFormServlet extends HttpServlet {
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    ValidateInputData validation = new ValidateInputData();
+
     String name  = request.getParameter("name");
     String cpf   = request.getParameter("cpf");
     String email = request.getParameter("email");
@@ -36,25 +40,9 @@ public class EmployeeFormServlet extends HttpServlet {
 		String address = request.getParameter("address");
 		String phone = request.getParameter("phone");
 
-    boolean employee_valid = true;
+    Map<String, String> employee_valid = validation.validateEmployee(name, cpf, email, role, address, phone);
 
-    if (name.matches(".*\\d+.*") || name.isEmpty()) {
-      employee_valid = false;
-      response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=Insira um nome valido&name=" +
-              name + "&cpf=" + cpf + "&email=" + email + "&role=" + role + "&address=" + address + "&phone=" + phone);
-    }
-    else if (cpf.isEmpty() || cpf.length() != "222.222.222-22".length()) {
-      employee_valid = false;
-      response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=Insira um cpf valido&name=" +
-              name + "&cpf=" + cpf + "&email=" + email + "&role=" + role + "&address=" + address + "&phone=" + phone);
-    }
-    else if (!email.matches("..*@.*\\...*.")) {
-      employee_valid = false;
-      response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=Insira um e-mail valido&name=" +
-              name + "&cpf=" + cpf + "&email=" + email + "&role=" + role + "&address=" + address + "&phone=" + phone);
-    }
-
-    if (employee_valid) {
+    if (employee_valid.get("valid").matches("true")) {
       Employee employee = new Employee();
       employee.setName(name);
       employee.setCpf(cpf);
@@ -77,6 +65,9 @@ public class EmployeeFormServlet extends HttpServlet {
       } catch (SQLException e) {
         e.printStackTrace();
       }
+    }
+    else {
+      response.sendRedirect(request.getContextPath() + employee_valid.get("url"));
     }
   }
 }

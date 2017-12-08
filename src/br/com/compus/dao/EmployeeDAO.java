@@ -103,7 +103,7 @@ public class EmployeeDAO extends BaseDAO{
   
   public boolean edit (Employee employee) throws SQLException {
     String sql = "UPDATE employee " + 
-             "SET name = ?, email = ?, cpf = ?, role = ?, address = ?, phone = ?" + 
+             "SET name = ?, email = ?, cpf = ?, role = ?, address = ?, phone = ?" +
              "WHERE  id = ?";
     try {
       PreparedStatement statement = this.connection.prepareStatement(sql);
