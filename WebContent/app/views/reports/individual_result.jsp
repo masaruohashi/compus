@@ -54,36 +54,26 @@
             <table class="table" align="right">
               <thead>
                 <tr>
-                  <th>Funcionário</th>
-                  <th>Componente</th>
-                  <th>Quantidade vendidas</th>
+                  <th>Data</th>
+                  <th>Quantidade de vendas</th>
+                  <th>Montante Bruto</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>John</td>
-                  <td>Processador Core i9</td>
-                  <td>0</td>
+                  <td>10/01/2017</td>
+                  <td>2</td>
+                  <td>R$1000,00</td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td>Processador Core i7</td>
-                  <td>1</td>
+                  <td>12/01/2017</td>
+                  <td>3</td>
+                  <td>R$550,00</td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td>Placa-Mãe</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>Memória</td>
+                  <td>15/01/2017</td>
                   <td>6</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>HD</td>
-                  <td>5</td>
+                  <td>R$2500,00</td>
                 </tr>
               </tbody>
             </table>
