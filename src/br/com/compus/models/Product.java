@@ -11,9 +11,13 @@ public abstract class Product {
     this.id = id;
   }
 
+  public String getFormattedPrice() {
+    return String.format("%.2f", this.getPrice());
+  }
+
   public abstract String getName();
 
-  public abstract String getFormattedPrice();
-
   public abstract double getPrice();
+
+  public abstract String productType();
 }

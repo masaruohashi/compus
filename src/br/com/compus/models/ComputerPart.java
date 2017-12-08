@@ -1,7 +1,16 @@
 package br.com.compus.models;
 
 public abstract class ComputerPart extends Product{
+  private String name;
   private double price;
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
 
   public double getPrice() {
     return price;
@@ -9,9 +18,5 @@ public abstract class ComputerPart extends Product{
 
   public void setPrice(double price) {
     this.price = price;
-  }
-
-  public String getFormattedPrice() {
-    return String.format("%.2f", price);
   }
 }
