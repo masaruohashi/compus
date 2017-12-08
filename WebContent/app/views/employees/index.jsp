@@ -57,7 +57,7 @@
         </ul>
       </nav>
       <div class="content col-sm-10">
-        <span class="h2">Listagem de Usuários</span>
+        <span class="h2">Listagem de Funcionários</span>
         <hr>
         <div class="content-table">
           <table class="table">

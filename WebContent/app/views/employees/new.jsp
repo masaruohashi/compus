@@ -106,7 +106,12 @@
                   <label>Endereço: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="address" />
+                  <% if(request.getParameter("address") != null) { %>
+                    <input class="user-input pull-right" type="text" name="address" value="<%=request.getParameter("address")%>"/>
+                  <% }
+                    else { %>
+                    <input class="user-input pull-right" type="text" name="address" />
+                  <% } %>
                 </div>
               </div>
               <div class="row">
@@ -114,7 +119,12 @@
                   <label>Telefone: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="phone" />
+                  <% if(request.getParameter("email") != null) { %>
+                    <input class="phone user-input pull-right" type="text" name="phone" value="<%=request.getParameter("phone")%>"/>
+                  <% }
+                  else { %>
+                    <input class="phone user-input pull-right" type="text" name="phone" />
+                  <% } %>
                 </div>
               </div>
               <div class="row">

@@ -37,7 +37,7 @@
         <nav class="col-sm-2">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="../funcionario"><span>Listagem de Funcionários</span></a>
+                    <a class="nav-link" href="../funcionario"><span>Listagem de Funcionários</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../funcionario/novo"><span>Cadastro de Funcionário</span></a>
