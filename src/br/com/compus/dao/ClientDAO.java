@@ -32,7 +32,7 @@ public class ClientDAO extends BaseDAO {
         client.setName(result.getString("name"));
         client.setCpf(result.getString("cpf"));
         client.setEmail(result.getString("email"));
-        client.setTel(result.getString("phone"));
+        client.setPhone(result.getString("phone"));
         clients.add(client);
       }
       result.close();
@@ -66,7 +66,7 @@ public class ClientDAO extends BaseDAO {
       statement.setString(2, client.getEmail());
       statement.setString(3, client.getCpf());
       statement.setString(4, client.getAddress());
-      statement.setString(5, client.getTel());
+      statement.setString(5, client.getPhone());
       statement.execute();
       statement.close();
       return true;

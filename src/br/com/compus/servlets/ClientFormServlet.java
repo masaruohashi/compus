@@ -56,7 +56,7 @@ public class ClientFormServlet extends HttpServlet {
       client.setCpf(cpf);
       client.setEmail(email);
       client.setAddress(address);
-      client.setTel(phone);
+      client.setPhone(phone);
 
       try {
         if (ClientDAO.getInstance().create(client)) {

@@ -79,7 +79,7 @@
                         <td><%= client.getCpf() %></td>
                         <td><%= client.getEmail() %></td>
                         <td><%= client.getAddress() %></td>
-                        <td><%= client.getTel() %></td>
+                        <td><%= client.getPhone() %></td>
                         <td>
                             <a href="#" class="btn btn-primary">Editar</a>
                             <a href="#" class="btn btn-danger">Excluir</a>
