@@ -4,6 +4,7 @@ public class Memory extends ComputerPart{
   private String name;
   private String type;
   private String capacity;
+  private String imageUrl;
 
   public String getName() {
     return name;
@@ -27,5 +28,13 @@ public class Memory extends ComputerPart{
   
   public void setCapacity(String capacity) {
     this.capacity = capacity;
+  }
+  
+  public String getImageUrl() {
+    return imageUrl;
+  }
+  
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 }

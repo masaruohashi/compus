@@ -31,6 +31,7 @@ public class MemoryDAO extends BaseDAO {
         memory.setPrice(result.getDouble("price"));
         memory.setType(result.getString("type"));
         memory.setCapacity(result.getString("capacity"));
+        memory.setImageUrl(result.getString("image_url"));
         memories.add(memory);
       }
       result.close();
@@ -55,6 +56,7 @@ public class MemoryDAO extends BaseDAO {
         memory.setPrice(result.getDouble("price"));
         memory.setType(result.getString("type"));
         memory.setCapacity(result.getString("capacity"));
+        memory.setImageUrl(result.getString("image_url"));
         result.close();
         statement.close();
       }

@@ -30,6 +30,7 @@ public class HdDAO extends BaseDAO {
         hd.setName(result.getString("name"));
         hd.setPrice(result.getDouble("price"));
         hd.setCapacity(result.getString("capacity"));
+        hd.setImageUrl(result.getString("image_url"));
         hds.add(hd);
       }
       result.close();
@@ -53,6 +54,7 @@ public class HdDAO extends BaseDAO {
         hd.setName(result.getString("name"));
         hd.setPrice(result.getDouble("price"));
         hd.setCapacity(result.getString("capacity"));
+        hd.setImageUrl(result.getString("image_url"));
         result.close();
         statement.close();
       }

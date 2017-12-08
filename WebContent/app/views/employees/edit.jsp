@@ -48,7 +48,7 @@
             <a class="nav-link" href="../cliente/novo"><span>Cadastro de Cliente</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="report.html"><span>Relatório Geral</span></a>
+            <a class="nav-link" href="#"><span>Relatório Geral</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"><span>Relatório Individual</span></a>
@@ -67,7 +67,7 @@
                   <label>Nome: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="name" value=<%=employee.getName() %>>
+                  <input class="user-input pull-right" type="text" name="name" value="<%=employee.getName() %>" />
                 </div>
               </div>
               <div class="row">
@@ -75,7 +75,7 @@
                   <label>CPF: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="cpf" value=<%=employee.getCpf() %>>
+                  <input class="user-input pull-right" type="text" name="cpf" value="<%=employee.getCpf() %>" />
                 </div>
               </div>
               <div class="row">
@@ -83,7 +83,7 @@
                   <label>Email: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="email" value=<%=employee.getEmail() %>>
+                  <input class="user-input pull-right" type="text" name="email" value="<%=employee.getEmail() %>" />
                 </div>
               </div>
               <div class="row">
@@ -91,7 +91,7 @@
                   <label>Telefone: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="phone" value="(11) 11111-1111">
+                  <input class="user-input pull-right" type="text" name="phone" value="<%=employee.getPhone() %>" />
                 </div>
               </div>
               <div class="row">
@@ -99,7 +99,7 @@
                   <label>Endereço: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="address" value="Rua X, 1234, Butantã">
+                  <input class="user-input pull-right" type="text" name="address" value="<%=employee.getAddress() %>" />
                 </div>
               </div>
               <div class="row">
@@ -109,24 +109,16 @@
                 <div class="col-sm-9">
                   <select class="user-input pull-right" name="role">
                   	<%for (String role: Employee.ACCEPTED_ROLES) {%>
-                    <option value=<%=role %> <%if (employee.getRole().matches(role)) {%> selected <%} %>><%=role %></option>
+                    <option value="<%=role %>" <%if (employee.getRole().matches(role)) {%> selected <%} %>><%=role %></option>
                     <%} %>
                   </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-3">
-                  <label>Senha: </label>
-                </div>
-                <div class="col-sm-9">
-                  <input class="user-input pull-right" type="password" value="1234">
                 </div>
               </div>
               <div class="row form-buttons">
                 <div class="col-sm-5 col-sm-offset-7">
                   <div class="row">
                     <div class="col-sm-6">
-                      <a href="${pageContext.request.contextPath }/funcionario" class="form-button btn btn-warning pull-right">Cancelar</a>
+                      <a href="../funcionario" class="form-button btn btn-warning pull-right">Cancelar</a>
                     </div>
                     <div class="col-sm-6">
                       <button type="submit" class="form-button btn btn-primary pull-right">Enviar</button>

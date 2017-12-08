@@ -32,6 +32,7 @@ public class MotherboardDAO extends BaseDAO{
         motherboard.setSocket(result.getString("socket"));
         motherboard.setMemorySlots(result.getInt("memory_slots"));
         motherboard.setMemoryType(result.getString("memory_type"));
+        motherboard.setImageUrl(result.getString("image_url"));
         motherboards.add(motherboard);
       }
       result.close();
@@ -57,6 +58,7 @@ public class MotherboardDAO extends BaseDAO{
         motherboard.setSocket(result.getString("socket"));
         motherboard.setMemorySlots(result.getInt("memory_slots"));
         motherboard.setMemoryType(result.getString("memory_type"));
+        motherboard.setImageUrl(result.getString("image_url"));
         result.close();
         statement.close();
       }

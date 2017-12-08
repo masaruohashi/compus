@@ -44,6 +44,8 @@ public class EmployeeEditServlet extends HttpServlet {
 	    employee.setCpf(request.getParameter("cpf"));
 	    employee.setEmail(request.getParameter("email"));
 	    employee.setRole(request.getParameter("role"));
+	    employee.setAddress(request.getParameter("address"));
+	    employee.setPhone(request.getParameter("phone"));
 	    try {
 	    	if (EmployeeDAO.getInstance().edit(employee)) {
 	    		response.sendRedirect(request.getContextPath() + "/funcionario?msg=Usuario editado com sucesso");

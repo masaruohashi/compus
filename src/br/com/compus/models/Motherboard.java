@@ -5,6 +5,7 @@ public class Motherboard extends ComputerPart{
   private String socket;
   private int memorySlots;
   private String memoryType;
+  private String imageUrl;
 
   public String getName() {
     return name;
@@ -36,5 +37,13 @@ public class Motherboard extends ComputerPart{
   
   public void setMemoryType(String memoryType) {
     this.memoryType = memoryType;
+  }
+  
+  public String getImageUrl() {
+    return imageUrl;
+  }
+  
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 }

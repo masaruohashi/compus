@@ -49,10 +49,10 @@
             <a class="nav-link" href="../cliente/novo"><span>Cadastro de Cliente</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="report.html"><span>Relatório Geral</span></a>
+            <a class="nav-link" href=""><span>Relatório Geral</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><span>Relatório Individual</span></a>
+            <a class="nav-link" href=""><span>Relatório Individual</span></a>
           </li>
         </ul>
       </nav>
@@ -99,6 +99,22 @@
                   else { %>
                     <input class="user-input pull-right" type="text" name="email" />
                   <% } %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <label>Endereço: </label>
+                </div>
+                <div class="col-sm-9">
+                  <input class="user-input pull-right" type="text" name="address" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <label>Telefone: </label>
+                </div>
+                <div class="col-sm-9">
+                  <input class="user-input pull-right" type="text" name="phone" />
                 </div>
               </div>
               <div class="row">
