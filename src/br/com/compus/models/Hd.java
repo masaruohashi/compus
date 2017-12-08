@@ -6,7 +6,7 @@ public class Hd extends ComputerPart{
   private String imageUrl;
 
 
-public String getName() {
+  public String getName() {
     return name;
   }
 

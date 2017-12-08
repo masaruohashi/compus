@@ -5,7 +5,7 @@ public class Cpu extends ComputerPart{
   private String socket;
   private String imageUrl;
 
-public String getName() {
+  public String getName() {
     return name;
   }
 

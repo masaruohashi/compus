@@ -61,7 +61,7 @@
                   <label>Nome: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="name" value="<%=employee.getName() %>">
+                  <input class="user-input pull-right" type="text" name="name" value="<%=employee.getName() %>" />
                 </div>
               </div>
               <div class="row">
@@ -69,7 +69,7 @@
                   <label>CPF: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="cpf" value="<%=employee.getCpf() %>">
+                  <input class="user-input pull-right" type="text" name="cpf" value="<%=employee.getCpf() %>" />
                 </div>
               </div>
               <div class="row">
@@ -77,7 +77,7 @@
                   <label>Email: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="email" value="<%=employee.getEmail() %>">
+                  <input class="user-input pull-right" type="text" name="email" value="<%=employee.getEmail() %>" />
                 </div>
               </div>
               <div class="row">
@@ -85,7 +85,7 @@
                   <label>Telefone: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="phone" value="<%=employee.getPhone() %>">
+                  <input class="user-input pull-right" type="text" name="phone" value="<%=employee.getPhone() %>" />
                 </div>
               </div>
               <div class="row">
@@ -93,7 +93,7 @@
                   <label>Endereço: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="address" value="<%=employee.getAddress() %>">
+                  <input class="user-input pull-right" type="text" name="address" value="<%=employee.getAddress() %>" />
                 </div>
               </div>
               <div class="row">
