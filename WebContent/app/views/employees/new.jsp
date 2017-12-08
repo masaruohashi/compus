@@ -38,13 +38,13 @@
             <a class="nav-link" href="../funcionario"><span>Listagem de Usuários</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="registration.html"><span>Cadastro de Usuário</span></a>
+            <a class="nav-link active" href=""><span>Cadastro de Usuário</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="report.html"><span>Relatório Geral</span></a>
+            <a class="nav-link" href=""><span>Relatório Geral</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><span>Relatório Individual</span></a>
+            <a class="nav-link" href=""><span>Relatório Individual</span></a>
           </li>
         </ul>
       </nav>
@@ -76,6 +76,22 @@
                 </div>
                 <div class="col-sm-9">
                   <input class="user-input pull-right" type="text" name="email" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <label>Endereço: </label>
+                </div>
+                <div class="col-sm-9">
+                  <input class="user-input pull-right" type="text" name="address" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <label>Telefone: </label>
+                </div>
+                <div class="col-sm-9">
+                  <input class="user-input pull-right" type="text" name="phone" />
                 </div>
               </div>
               <div class="row">
