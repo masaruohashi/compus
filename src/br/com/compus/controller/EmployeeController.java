@@ -21,4 +21,18 @@ public class EmployeeController {
     }
     return false;
   }
+  
+  public static boolean checkExistingEmployee(String cpf, int id) {
+    try {
+      List<Employee> employees = EmployeeDAO.getInstance().getAll();
+      for (Employee employee: employees) {
+        if(employee.getCpf().equals(cpf) && employee.getId() != id) {
+          return true;
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
 }

@@ -6,9 +6,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Compus - Cadastro</title>
-  <script type="text/javascript" src="../../../bower_components/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="../../../bower_components/jquery/dist/jquery.mask.min.js"></script>
-  <script src="../../../bower_components/jquery/dist/masks.js"></script>
+  <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../bower_components/jquery/dist/jquery.mask.min.js"></script>
+  <script src="../bower_components/jquery/dist/masks.js"></script>
   <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="../bower_components/font-awesome/css/font-awesome.css">
@@ -106,7 +106,12 @@
                   <label>Endereço: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="address" />
+                  <% if(request.getParameter("address") != null) { %>
+                    <input class="user-input pull-right" type="text" name="address" value="<%=request.getParameter("address")%>"/>
+                  <% }
+                  else { %>
+                    <input class="user-input pull-right" type="text" name="address" />
+                  <% } %>
                 </div>
               </div>
               <div class="row">
@@ -114,7 +119,12 @@
                   <label>Telefone: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="phone" />
+                  <% if(request.getParameter("phone") != null) { %>
+                    <input class="user-input pull-right" type="text" name="phone" value="<%=request.getParameter("phone")%>"/>
+                  <% }
+                  else { %>
+                    <input class="phone user-input pull-right" type="text" name="phone" />
+                  <% } %>
                 </div>
               </div>
               <div class="row">
