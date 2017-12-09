@@ -1,4 +1,4 @@
-package br.com.compus.controller;
+package br.com.compus.services;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.compus.dao.ClientDAO;
 import br.com.compus.models.Client;
 
-public class ClientController {
+public class ClientExistenceValidator {
   
-  public static boolean checkExistingClient(String cpf) {
+  public static boolean checkExistingClientForCreate(String cpf) {
     System.out.println("CPF:" + cpf);
     try {
       List<Client> clients = ClientDAO.getInstance().getAll();
@@ -24,7 +24,7 @@ public class ClientController {
     return false;
   }
   
-  public static boolean checkExistingClient(String cpf, int id) {
+  public static boolean checkExistingClientForEdit(String cpf, int id) {
     try {
       List<Client> clients = ClientDAO.getInstance().getAll();
       for (Client client: clients) {

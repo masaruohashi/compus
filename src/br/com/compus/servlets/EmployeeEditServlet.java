@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.compus.controller.EmployeeController;
-import br.com.compus.controller.ValidateData;
 import br.com.compus.dao.EmployeeDAO;
 import br.com.compus.models.Employee;
+import br.com.compus.services.EmployeeExistenceValidator;
+import br.com.compus.services.DataValidator;
 
 @WebServlet("/funcionario/editar")
 public class EmployeeEditServlet extends HttpServlet {
@@ -49,7 +49,7 @@ public class EmployeeEditServlet extends HttpServlet {
 	  String address = request.getParameter("address");
 	  String phone = request.getParameter("phone");
 	  
-	  Map<String, String> client_valid = ValidateData.validate(name, cpf, email, address, phone);
+	  Map<String, String> client_valid = DataValidator.validate(name, cpf, email, address, phone);
 	  if(client_valid.get("valid").matches("true")) {
 	    Employee employee = new Employee();
 	    employee.setId(id);
@@ -60,7 +60,7 @@ public class EmployeeEditServlet extends HttpServlet {
 	    employee.setAddress(address);
 	    employee.setPhone(phone);
 	    try {
-	      if(EmployeeController.checkExistingEmployee(request.getParameter("cpf"), Integer.parseInt(request.getParameter("id")))) {
+	      if(EmployeeExistenceValidator.checkExistingEmployeeForEdit(request.getParameter("cpf"), Integer.parseInt(request.getParameter("id")))) {
 	        response.sendRedirect(request.getContextPath() + "/funcionario/editar?id=" + id + "&msg=CPF ja cadastrado");
 	      }
 	      else {

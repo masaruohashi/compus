@@ -2,8 +2,8 @@ package br.com.compus.servlets;
 
 import br.com.compus.dao.ClientDAO;
 import br.com.compus.models.Client;
-import br.com.compus.controller.ClientController;
-import br.com.compus.controller.ValidateData;
+import br.com.compus.services.ClientExistenceValidator;
+import br.com.compus.services.DataValidator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,9 +24,9 @@ public class ClientFormServlet extends HttpServlet {
     String address = request.getParameter("address");
     String phone = request.getParameter("phone");
 
-    Map<String, String> client_valid = ValidateData.validate(name, cpf, email, address, phone);
+    Map<String, String> clientValid = DataValidator.validate(name, cpf, email, address, phone);
 
-    if (client_valid.get("valid").matches("true")) {
+    if (clientValid.get("valid").matches("true")) {
       Client client = new Client();
       client.setName(name);
       client.setCpf(cpf);
@@ -35,7 +35,7 @@ public class ClientFormServlet extends HttpServlet {
       client.setPhone(phone);
 
       try {
-        if (ClientController.checkExistingClient(cpf)) {
+        if (ClientExistenceValidator.checkExistingClientForCreate(cpf)) {
           response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=CPF ja cadastrado");
         }
         else {
@@ -50,7 +50,7 @@ public class ClientFormServlet extends HttpServlet {
       }
     }
     else {
-      response.sendRedirect(request.getContextPath() + "/cliente/novo?msg" + client_valid.get("msg"));
+      response.sendRedirect(request.getContextPath() + "/cliente/novo?msg" + clientValid.get("msg"));
     }
   }
 

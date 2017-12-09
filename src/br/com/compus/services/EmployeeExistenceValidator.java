@@ -1,4 +1,4 @@
-package br.com.compus.controller;
+package br.com.compus.services;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.compus.dao.EmployeeDAO;
 import br.com.compus.models.Employee;
 
-public class EmployeeController {
+public class EmployeeExistenceValidator {
   
-  public static boolean checkExistingEmployee(String cpf) {
+  public static boolean checkExistingEmployeeForCreate(String cpf) {
     try {
       List<Employee> employees = EmployeeDAO.getInstance().getAll();
       for (Employee employee: employees) {
@@ -22,7 +22,7 @@ public class EmployeeController {
     return false;
   }
   
-  public static boolean checkExistingEmployee(String cpf, int id) {
+  public static boolean checkExistingEmployeeForEdit(String cpf, int id) {
     try {
       List<Employee> employees = EmployeeDAO.getInstance().getAll();
       for (Employee employee: employees) {

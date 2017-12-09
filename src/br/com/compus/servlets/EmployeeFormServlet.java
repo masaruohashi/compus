@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.compus.controller.EmployeeController;
-import br.com.compus.controller.ValidateData;
 import br.com.compus.dao.EmployeeDAO;
 import br.com.compus.models.Employee;
+import br.com.compus.services.EmployeeExistenceValidator;
+import br.com.compus.services.DataValidator;
 
 
 @WebServlet("/funcionario/novo")
@@ -39,9 +39,9 @@ public class EmployeeFormServlet extends HttpServlet {
 		String address = request.getParameter("address");
 		String phone = request.getParameter("phone");
 
-    Map<String, String> employee_valid = ValidateData.validate(name, cpf, email, address, phone);
+    Map<String, String> employeeValid = DataValidator.validate(name, cpf, email, address, phone);
 
-    if (employee_valid.get("valid").matches("true")) {
+    if (employeeValid.get("valid").matches("true")) {
       Employee employee = new Employee();
       employee.setName(name);
       employee.setCpf(cpf);
@@ -50,7 +50,7 @@ public class EmployeeFormServlet extends HttpServlet {
 			employee.setAddress(address);
 			employee.setPhone(phone);
       try {
-        if(EmployeeController.checkExistingEmployee(cpf)) {
+        if(EmployeeExistenceValidator.checkExistingEmployeeForCreate(cpf)) {
           response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=CPF ja cadastrado&name=" + name +
                                 "&email=" + email + "&role=" + role + "&address=" + address + "&phone=" + phone);
         }
@@ -67,7 +67,7 @@ public class EmployeeFormServlet extends HttpServlet {
       }
     }
     else {
-      response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=" + employee_valid.get("msg"));
+      response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=" + employeeValid.get("msg"));
     }
   }
 }

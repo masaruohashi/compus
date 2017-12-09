@@ -1,9 +1,9 @@
-package br.com.compus.controller;
+package br.com.compus.services;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ValidateData {
+public class DataValidator {
 
   public static Map<String, String> validate(String name, String cpf, String email, String address, String phone) {
     Map<String, String> map = new HashMap<String, String>();
