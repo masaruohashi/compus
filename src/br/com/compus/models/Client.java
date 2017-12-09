@@ -7,19 +7,11 @@ public class Client {
   private String address;
   private String email;
   private String phone;
-  
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
 
   public int getId() {
     return id;
   }
-  
+
   public void setId(int id) {
     this.id = id;
   }
