@@ -7,8 +7,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Compus - Relatório Geral</title>
-  <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="../bower_components/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" type="text/css" href="../app/assets/stylesheets/admin_panel.css">
@@ -64,13 +64,13 @@
                   <% int actualMonth = calendar.get(Calendar.MONTH); %>
                   <% int actualYear = calendar.get(Calendar.YEAR); %>
                   <select class="user-input pull-right" name="date">
-                    <% for (int i = 11; i >= 0; i--) { %>
+                    <% for(int i = 11; i >= 0; i--) { %>
                       <% int month = actualMonth - i; %>
                       <% calendar.set(Calendar.MONTH, month); %>
                       <% calendar.set(Calendar.YEAR, actualYear); %>
                       <% String stringMonth = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT_FORMAT, Locale.getDefault()); %>
                       <% String date = stringMonth + "/" + calendar.get(Calendar.YEAR); %>
-                      <option value=<%=calendar%>><%=date %></option>
+                      <option value="<%=calendar.get(Calendar.MONTH)%>/<%=calendar.get(Calendar.YEAR)%>"><%=date %></option>
                     <% } %>
                   </select>
                 </div>
@@ -82,7 +82,6 @@
                       <a href="#" class="form-button btn btn-warning pull-right">Cancelar</a>
                     </div>
                     <div class="col-sm-7">
-                      <!-- <a class="btn btn-primary" href="report_general_result.html">Gerar relatório</a> -->
                       <button type="submit" class="form-button btn btn-primary pull-right">Gerar relatório</button>
                     </div>
                   </div>
@@ -93,5 +92,26 @@
         </div>
       </div>
   </div>
+  <% if(request.getParameter("msg") != null) { %>
+    <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="messageModalLabel">Mensagem</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= request.getParameter("msg") %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>$('#messageModal').modal({show: true})</script>
+  <% } %>
 </body>
 </html>

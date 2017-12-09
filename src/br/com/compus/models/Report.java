@@ -31,5 +31,4 @@ public class Report {
     this.totalPrice = totalPrice;
   }
   
-  
 }

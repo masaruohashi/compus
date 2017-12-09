@@ -1,7 +1,11 @@
 package br.com.compus.dao;
 
-import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import br.com.compus.models.Report;
 
@@ -14,10 +18,32 @@ public class ReportDAO extends BaseDAO {
     return new ReportDAO();
   }
   
-  public Report getGeneralReport(Calendar calendar) {
-    Date date = new Date(calendar.get(Calendar.YEAR), calendar.get(calendar.get(Calendar.MONTH)), 0));
-    String sql = "SELECT date, COUNT(id), SUM(final_price) FROM order " +
-                 "GROUP BY date";
+  public List<Report> getGeneralReport(int month, int year) throws SQLException {
+    List<Report> generalReports = new ArrayList<Report>();
+    try {
+      String sql = "SELECT date, COUNT(id) as quantidade, SUM(final_price) as total FROM `order` " +
+          "WHERE MONTH(date) = ? " +
+          "AND YEAR(date) = ? " + 
+          "GROUP BY date ";
+      PreparedStatement statement = this.connection.prepareStatement(sql);
+      statement.setInt(1, month);
+      statement.setInt(2, year);
+      ResultSet result = statement.executeQuery();
+      while(result.next()) {
+        //Convert Date SQL type to Calendar
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(result.getDate("date").getTime());
+        
+        Report report = new Report();
+        report.setDate(calendar);
+        report.setNumSales(result.getInt("quantidade"));
+        report.setTotalPrice(result.getDouble("total"));
+        generalReports.add(report);        
+      }
+    } catch(SQLException e) {
+      e.printStackTrace();
+    }
+    return generalReports;
   }
   
 }
