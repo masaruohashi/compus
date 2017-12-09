@@ -53,7 +53,7 @@
               <span>Não existem peças suficientes para a montagem!</span>
             </div>
           <% } else { %>
-            <form action="computadores" method="POST">
+            <form>
               <div class="form-group">
                 <label for="motherboard">Placa-Mãe:</label>
                 <select class="form-control" id="motherboard" name="motherboard">
@@ -107,12 +107,64 @@
                   </div>
                 </div>
               </div>
-              <input type="submit" class="btn btn-primary pull-right" value="Enviar" />
+              <div class="row">
+                <span class="col-sm-12 text-muted">OBS: Serão adicionados R$300,00 referentes à montagem.</span>
+              </div>
+              <input type="submit" id="submit" class="btn btn-primary pull-right" value="Enviar" />
             </form>
           <% } %>
         </div>
       </div>
     </div>
   </div>
+  <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="messageModalLabel">Status</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center" id="modal-text">
+	          <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+	          <span class="sr-only">Enviando...</span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $("#submit").click(function(event){
+      $('#messageModal').modal({show: true})
+      event.preventDefault();
+      $.ajax({
+        url: "computadores",
+        method: "POST",
+        data: {
+          motherboard: $("#motherboard").val(),
+          cpu: $("#cpu").val(),
+          hd: $("#hd").val(),
+          memory: $("#memory").val(),
+          hd_quantity: $("#hd_quantity").val(),
+          memory_quantity: $("#memory_quantity").val()
+        },
+        timeout: 3000,
+        success: function(responseData) {
+          $("#modal-text").text(responseData.message);
+        },
+        error: function(jqXHR) {
+          $("#modal-text").text("Falha ao enviar o computador.");
+        },
+        complete: function() {
+          $('#messageModal').modal({show: true});
+        }
+      });
+    });
+  </script>
 </body>
 </html>

@@ -50,7 +50,7 @@
         <% } %>
         <% for(Cpu cpu: cpus) { %>
 	        <div class="product">
-	          <img src="app/assets/images/cpu.jpg">
+	          <img src="<%= cpu.getImageUrl() %>">
 	          <span class="product-name"><%= cpu.getName() %></span>
 	          <span class="product-price">R$ <%= cpu.getFormattedPrice() %></span>
 	          <a class="btn btn-primary js-select-button" data-id="<%= cpu.getId() %>">

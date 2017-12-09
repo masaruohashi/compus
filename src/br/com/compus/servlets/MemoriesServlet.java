@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.compus.dao.MemoryDAO;
 import br.com.compus.models.Memory;
@@ -23,18 +24,19 @@ public class MemoriesServlet extends HttpServlet {
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    List<Memory> memories = null;
-    try {
-      memories = MemoryDAO.getInstance().getAll();
-      request.setAttribute("memories", memories);
-      RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/memories/index.jsp");
-      requestDispatcher.forward(request, response);
-    } catch (SQLException e) {
-      e.printStackTrace();
+    HttpSession session = request.getSession(false);
+    if(session == null || session.getAttribute("employee_cpf") == null || session.getAttribute("client_cpf") == null) {
+      response.sendRedirect(request.getContextPath() + "/identificacao");
+    } else {
+      List<Memory> memories = null;
+      try {
+        memories = MemoryDAO.getInstance().getAll();
+        request.setAttribute("memories", memories);
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/memories/index.jsp");
+        requestDispatcher.forward(request, response);
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
     }
-  }
-
-  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    doGet(request, response);
   }
 }

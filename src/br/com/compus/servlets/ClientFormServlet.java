@@ -2,7 +2,6 @@ package br.com.compus.servlets;
 
 import br.com.compus.dao.ClientDAO;
 import br.com.compus.models.Client;
-import sun.lwawt.macosx.CPlatformEmbeddedFrame;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

@@ -50,7 +50,7 @@
         <% } %>
         <% for(Hd hd: hds) { %>
           <div class="product">
-            <img src="app/assets/images/hd.jpg">
+            <img src="<%= hd.getImageUrl() %>">
             <span class="product-name"><%= hd.getName() %></span>
             <span class="product-price">R$ <%= hd.getFormattedPrice() %></span>
             <a class="btn btn-primary js-select-button" data-id="<%= hd.getId() %>">
