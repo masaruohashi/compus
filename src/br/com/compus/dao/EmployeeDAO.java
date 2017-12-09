@@ -107,7 +107,7 @@ public class EmployeeDAO extends BaseDAO{
   }
 
   public boolean create(Employee employee) throws SQLException {
-    String sql = "INSERT INTO employee (name, email, cpf, role, address, tel)" +
+    String sql = "INSERT INTO employee (name, email, cpf, role, address, phone)" +
                  "VALUES (?, ?, ?, ?, ?, ?)";
     try {
       PreparedStatement statement = this.connection.prepareStatement(sql);
@@ -125,10 +125,10 @@ public class EmployeeDAO extends BaseDAO{
     }
     return false;
   }
-  
+
   public boolean edit (Employee employee) throws SQLException {
-    String sql = "UPDATE employee " + 
-             "SET name = ?, email = ?, cpf = ?, role = ?, address = ?, phone = ?" + 
+    String sql = "UPDATE employee " +
+             "SET name = ?, email = ?, cpf = ?, role = ?, address = ?, phone = ?" +
              "WHERE  id = ?";
     try {
       PreparedStatement statement = this.connection.prepareStatement(sql);

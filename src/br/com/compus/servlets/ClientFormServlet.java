@@ -2,6 +2,8 @@ package br.com.compus.servlets;
 
 import br.com.compus.dao.ClientDAO;
 import br.com.compus.models.Client;
+import br.com.compus.services.ClientExistenceValidator;
+import br.com.compus.services.DataValidator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Map;
 
 @WebServlet("/cliente/novo")
 public class ClientFormServlet extends HttpServlet {
@@ -21,35 +24,9 @@ public class ClientFormServlet extends HttpServlet {
     String address = request.getParameter("address");
     String phone = request.getParameter("phone");
 
-    boolean client_valid = true;
+    Map<String, String> clientValid = DataValidator.validate(name, cpf, email, address, phone);
 
-    if (name.matches(".*\\d+.*") || name.isEmpty()) {
-      client_valid = false;
-      response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=Insira um nome valido&name=" +
-                            name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&phone=" + phone);
-    }
-    else if (cpf.isEmpty() || cpf.length() != "222.222.222-22".length()) {
-      client_valid = false;
-      response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=Insira um cpf valido&name=" +
-              name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&phone=" + phone);
-    }
-    else if (!email.matches(".*@.*\\..*")) {
-      client_valid = false;
-      response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=Insira um e-mail valido&name=" +
-              name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&phone=" + phone);
-    }
-    else if (address.isEmpty()) {
-      client_valid = false;
-      response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=Insira um endereco valido&name=" +
-              name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&phone=" + phone);
-    }
-    else if (phone.isEmpty() || phone.length() != "(22) 2222-2222".length()) {
-      client_valid = false;
-      response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=Insira um tel valido&name=" +
-              name + "&cpf=" + cpf + "&email=" + email + "&address=" + address + "&phone=" + phone);
-    }
-
-    if (client_valid) {
+    if (clientValid.get("valid").matches("true")) {
       Client client = new Client();
       client.setName(name);
       client.setCpf(cpf);
@@ -58,14 +35,22 @@ public class ClientFormServlet extends HttpServlet {
       client.setPhone(phone);
 
       try {
-        if (ClientDAO.getInstance().create(client)) {
-          response.sendRedirect(request.getContextPath() + "/cliente?msg=Cliente criado com sucesso");
-        } else {
-          doGet(request, response);
+        if (ClientExistenceValidator.checkExistingClientForCreate(cpf)) {
+          response.sendRedirect(request.getContextPath() + "/cliente/novo?msg=CPF ja cadastrado");
+        }
+        else {
+          if (ClientDAO.getInstance().create(client)) {
+            response.sendRedirect(request.getContextPath() + "/cliente?msg=Cliente criado com sucesso");
+          } else {
+            doGet(request, response);
+          }
         }
       } catch (SQLException e) {
         e.printStackTrace();
       }
+    }
+    else {
+      response.sendRedirect(request.getContextPath() + "/cliente/novo?msg" + clientValid.get("msg"));
     }
   }
 

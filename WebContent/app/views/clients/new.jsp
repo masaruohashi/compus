@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Compus - Cadastro</title>
-    <script type="text/javascript" src="../../../bower_components/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="../../../bower_components/jquery/dist/jquery.mask.min.js"></script>
-    <script src="../../../bower_components/jquery/dist/masks.js"></script>
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.mask.min.js"></script>
+    <script src="../bower_components/jquery/dist/masks.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../bower_components/font-awesome/css/font-awesome.css">
@@ -36,16 +36,16 @@
         <nav class="col-sm-2">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="../funcionario"><span>Listagem de Funcionários</span></a>
+                    <a class="nav-link" href="funcionario"><span>Listagem de Funcionários</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../funcionario/novo"><span>Cadastro de Funcionário</span></a>
+                    <a class="nav-link" href="funcionario/novo"><span>Cadastro de Funcionário</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../cliente"><span>Listagem de Clientes</span></a>
+                    <a class="nav-link" href="cliente"><span>Listagem de Clientes</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="../cliente/novo"><span>Cadastro de Cliente</span></a>
+                    <a class="nav-link active" href="cliente/novo"><span>Cadastro de Cliente</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="report.html"><span>Relatório Geral</span></a>

@@ -32,6 +32,7 @@ public class ClientDAO extends BaseDAO {
         client.setCpf(result.getString("cpf"));
         client.setEmail(result.getString("email"));
         client.setPhone(result.getString("phone"));
+        client.setAddress(result.getString("address"));
         clients.add(client);
       }
       result.close();

@@ -2,6 +2,7 @@ package br.com.compus.servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.compus.dao.EmployeeDAO;
 import br.com.compus.models.Employee;
+import br.com.compus.services.EmployeeExistenceValidator;
+import br.com.compus.services.DataValidator;
 
 
 @WebServlet("/funcionario/novo")
@@ -28,6 +31,7 @@ public class EmployeeFormServlet extends HttpServlet {
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     String name  = request.getParameter("name");
     String cpf   = request.getParameter("cpf");
     String email = request.getParameter("email");
@@ -35,25 +39,9 @@ public class EmployeeFormServlet extends HttpServlet {
 		String address = request.getParameter("address");
 		String phone = request.getParameter("phone");
 
-    boolean emploee_valid = true;
+    Map<String, String> employeeValid = DataValidator.validate(name, cpf, email, address, phone);
 
-    if (name.matches(".*\\d+.*") || name.isEmpty()) {
-      emploee_valid = false;
-      response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=Insira um nome valido&name=" +
-                            name + "&cpf=" + cpf + "&email=" + email + "&role=" + role);
-    }
-    else if (cpf.isEmpty() || cpf.length() != "222.222.222-22".length()) {
-      emploee_valid = false;
-      response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=Insira um cpf valido&name=" +
-              name + "&cpf=" + cpf + "&email=" + email + "&role=" + role);
-    }
-    else if (!email.matches("..*@.*\\...*.")) {
-      emploee_valid = false;
-      response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=Insira um e-mail valido&name=" +
-              name + "&cpf=" + cpf + "&email=" + email + "&role=" + role);
-    }
-
-    if (emploee_valid) {
+    if (employeeValid.get("valid").matches("true")) {
       Employee employee = new Employee();
       employee.setName(name);
       employee.setCpf(cpf);
@@ -62,14 +50,24 @@ public class EmployeeFormServlet extends HttpServlet {
 			employee.setAddress(address);
 			employee.setPhone(phone);
       try {
-        if (EmployeeDAO.getInstance().create(employee)) {
-          response.sendRedirect(request.getContextPath() + "/funcionario?msg=Usuario criado com sucesso");
-        } else {
-          doGet(request, response);
+        if(EmployeeExistenceValidator.checkExistingEmployeeForCreate(cpf)) {
+          response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=CPF ja cadastrado&name=" + name +
+                                "&email=" + email + "&role=" + role + "&address=" + address + "&phone=" + phone);
+        }
+        else {
+          if (EmployeeDAO.getInstance().create(employee)) {
+            
+            response.sendRedirect(request.getContextPath() + "/funcionario?msg=Usuario criado com sucesso");
+          } else {
+            doGet(request, response);
+          }
         }
       } catch (SQLException e) {
         e.printStackTrace();
       }
+    }
+    else {
+      response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=" + employeeValid.get("msg"));
     }
   }
 }
