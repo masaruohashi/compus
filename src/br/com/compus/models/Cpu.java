@@ -1,16 +1,17 @@
 package br.com.compus.models;
 
 public class Cpu extends ComputerPart{
-  private String name;
   private String socket;
   private String imageUrl;
 
-  public String getName() {
-    return name;
+  public Cpu() {
+    super();
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public Cpu(String name, double price, String socket) {
+    this.setName(name);
+    this.setSocket(socket);
+    this.setPrice(price);
   }
 
   public String getSocket() {
@@ -20,12 +21,16 @@ public class Cpu extends ComputerPart{
   public void setSocket(String socket) {
     this.socket = socket;
   }
+
+  public String productType() {
+    return "cpu";
+  }
   
   public String getImageUrl() {
-	return imageUrl;
+	  return imageUrl;
   }
 
   public void setImageUrl(String imageUrl) {
-	this.imageUrl = imageUrl;
+	  this.imageUrl = imageUrl;
   }
 }

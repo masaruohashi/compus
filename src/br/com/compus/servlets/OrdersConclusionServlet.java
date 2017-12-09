@@ -3,12 +3,10 @@ package br.com.compus.servlets;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -17,52 +15,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
+
+import br.com.compus.dao.ClientDAO;
 import br.com.compus.dao.CpuDAO;
+import br.com.compus.dao.EmployeeDAO;
 import br.com.compus.dao.HdDAO;
 import br.com.compus.dao.MemoryDAO;
 import br.com.compus.dao.MotherboardDAO;
+import br.com.compus.dao.OrderDAO;
 import br.com.compus.models.Computer;
-import br.com.compus.models.Cpu;
-import br.com.compus.models.Hd;
-import br.com.compus.models.Memory;
-import br.com.compus.models.Motherboard;
 import br.com.compus.models.Order;
 import br.com.compus.models.Product;
 import br.com.compus.services.CookieHandler;
 import br.com.compus.services.OrderPriceCalculator;
 
-@WebServlet("/carrinho")
-public class OrdersServlet extends HttpServlet {
+@WebServlet("/pedido/novo")
+public class OrdersConclusionServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  public OrdersServlet() {
+  public OrdersConclusionServlet() {
     super();
-  }
-
-  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    HttpSession session = request.getSession(false);
-    if(session == null || session.getAttribute("employee_cpf") == null || session.getAttribute("client_cpf") == null) {
-      response.sendRedirect(request.getContextPath() + "/identificacao");
-    } else {
-      Map<String, Cookie> cookieMap = CookieHandler.getCookieMap(request.getCookies());
-      List<Motherboard> motherboards = new ArrayList<Motherboard>();
-      List<Cpu> cpus = new ArrayList<Cpu>();
-      List<Hd> hds = new ArrayList<Hd>();
-      List<Memory> memories = new ArrayList<Memory>();
-      List<Computer> computers = new ArrayList<Computer>();
-      motherboards.addAll(CookieHandler.getMotherboardsByCookie(cookieMap.get("motherboard_ids")));
-      cpus.addAll(CookieHandler.getCpusByCookie(cookieMap.get("cpu_ids")));
-      hds.addAll(CookieHandler.getHdsByCookie(cookieMap.get("hd_ids")));
-      memories.addAll(CookieHandler.getMemoriesByCookie(cookieMap.get("memory_ids")));
-      computers.addAll(CookieHandler.getComputersByCookie(cookieMap.get("computers")));
-      request.setAttribute("motherboards", motherboards);
-      request.setAttribute("cpus", cpus);
-      request.setAttribute("hds", hds);
-      request.setAttribute("memories", memories);
-      request.setAttribute("computers", computers);
-      RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/orders/index.jsp");
-      requestDispatcher.forward(request, response);
-    }
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -109,12 +82,20 @@ public class OrdersServlet extends HttpServlet {
         }
         OrderPriceCalculator orderPriceCalculator = new OrderPriceCalculator(order);
         orderPriceCalculator.calculate();
-        request.setAttribute("order", order);
-        request.setAttribute("total_price", orderPriceCalculator.getFormattedTotalPrice());
-        request.setAttribute("discount", orderPriceCalculator.getFormattedDiscount());
-        request.setAttribute("final_price", orderPriceCalculator.getFormattedFinalPrice());
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/orders/show.jsp");
-        requestDispatcher.forward(request, response);
+        order.setClient(ClientDAO.getInstance().findByCpf(session.getAttribute("client_cpf").toString()));
+        order.setEmployee(EmployeeDAO.getInstance().findByCpf(session.getAttribute("employee_cpf").toString()));;
+        order.setFinalPrice(orderPriceCalculator.getFinalPrice());
+        session.invalidate();
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        Map<String, String> data = new HashMap<String, String>();
+        if(OrderDAO.getInstance().createOrder(order)) {
+          data.put("message", "Sucesso ao criar o pedido!");
+        } else {
+          data.put("message", "Falha ao criar o pedido.");
+        }
+        JSONObject jsonData = new JSONObject(data);
+        response.getWriter().write(jsonData.toString());
       }
       catch (NumberFormatException e) {
         e.printStackTrace();

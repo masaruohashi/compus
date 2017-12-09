@@ -1,17 +1,18 @@
 package br.com.compus.models;
 
 public class Hd extends ComputerPart{
-  private String name;
   private String capacity;
   private String imageUrl;
 
 
-  public String getName() {
-    return name;
+  public Hd() {
+    super();
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public Hd(String name, double price, String capacity) {
+    this.setName(name);
+    this.setPrice(price);
+    this.setCapacity(capacity);
   }
 
   public String getCapacity() {
@@ -20,6 +21,10 @@ public class Hd extends ComputerPart{
 
   public void setCapacity(String capacity) {
     this.capacity = capacity;
+  }
+
+  public String productType() {
+    return "hd";
   }
   
   public String getImageUrl() {
