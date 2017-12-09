@@ -6,7 +6,6 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
 }
 
 body {
@@ -15,65 +14,12 @@ body {
 
 .login-box {
   background-color: white;
-  margin: 5% auto;
-  border: 1px
-  box-sizing: border-box;
   border: 1px solid;
   border-radius: 5px;
   border-color: rgba(50, 50, 50, 0.2);
   box-shadow: 1px 1px 10px #CCCCCC;
-  text-align: center;
-  width: 25%;
-  padding: 1%;
 }
 
 .logo {
   font-family: "Gravedigger";
-}
-
-.form-row {
-  margin: 3% 0;
-  display: block;
-}
-
-.form-label {
-  text-align: left;
-  width: 25%;
-  display: inline-block;
-}
-
-.form-input {
-  display: inline-block;
-}
-
-.user-info-border {
-  border: 1px dashed #DDDDDD;
-}
-
-.submit-button {
-  margin-top: 4%;
-}
-
-.btn {
-  text-decoration: none;
-  color: white;
-  padding: 2% 4%;
-  background-color: gray;
-  border-radius: 5px;
-}
-
-.btn-primary {
-  background-color: #1E90FF;
-}
-
-@media only screen and (max-width: 1480px) {
-  .login-box {
-    width: 30%;
-  }
-}
-
-@media only screen and (max-width: 1280px) {
-  .login-box {
-    width: 40%;
-  }
 }

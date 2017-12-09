@@ -31,7 +31,7 @@ public class EmployeeDAO extends BaseDAO{
         employee.setEmail(result.getString("email"));
         employee.setRole(result.getString("role"));
         employee.setAddress(result.getString("address"));
-        employee.setPhone(result.getString("tel"));
+        employee.setPhone(result.getString("phone"));
         employees.add(employee);
       }
       result.close();
@@ -57,7 +57,32 @@ public class EmployeeDAO extends BaseDAO{
         employee.setCpf(result.getString("cpf"));
         employee.setRole(result.getString("role"));
         employee.setAddress(result.getString("address"));
-        employee.setPhone(result.getString("tel"));
+        employee.setPhone(result.getString("phone"));
+        result.close();
+        statement.close();
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return employee;
+  }
+
+  public Employee findByCpf(String cpf) throws SQLException {
+    Employee employee = null;
+    try {
+      String sql = "SELECT * FROM employee WHERE cpf = ?";
+      PreparedStatement statement = this.connection.prepareStatement(sql);
+      statement.setString(1, cpf);
+      ResultSet result = statement.executeQuery();
+      if(result.next()) {
+        employee = new Employee();
+        employee.setId(result.getInt("id"));
+        employee.setName(result.getString("name"));
+        employee.setEmail(result.getString("email"));
+        employee.setCpf(result.getString("cpf"));
+        employee.setRole(result.getString("role"));
+        employee.setAddress(result.getString("address"));
+        employee.setPhone(result.getString("phone"));
         result.close();
         statement.close();
       }
@@ -103,7 +128,7 @@ public class EmployeeDAO extends BaseDAO{
   
   public boolean edit (Employee employee) throws SQLException {
     String sql = "UPDATE employee " + 
-             "SET name = ?, email = ?, cpf = ?, role = ?, address = ?, tel = ?" + 
+             "SET name = ?, email = ?, cpf = ?, role = ?, address = ?, phone = ?" + 
              "WHERE  id = ?";
     try {
       PreparedStatement statement = this.connection.prepareStatement(sql);

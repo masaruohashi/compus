@@ -1,10 +1,8 @@
 package br.com.compus.dao;
 
-
-import br.com.compus.jdbc.ConnectionFactory;
 import br.com.compus.models.Client;
+import br.com.compus.models.Employee;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,6 +27,7 @@ public class ClientDAO extends BaseDAO {
       ResultSet result = statement.executeQuery();
       while(result.next()) {
         Client client = new Client();
+        client.setId(result.getInt("id"));
         client.setName(result.getString("name"));
         client.setCpf(result.getString("cpf"));
         client.setEmail(result.getString("email"));
@@ -74,5 +73,28 @@ public class ClientDAO extends BaseDAO {
       e.printStackTrace();
     }
     return false;
+  }
+
+  public Client findByCpf(String cpf) throws SQLException {
+    Client client = null;
+    try {
+      String sql = "SELECT * FROM client WHERE cpf = ?";
+      PreparedStatement statement = this.connection.prepareStatement(sql);
+      statement.setString(1, cpf);
+      ResultSet result = statement.executeQuery();
+      if(result.next()) {
+        client = new Client();
+        client.setId(result.getInt("id"));
+        client.setName(result.getString("name"));
+        client.setCpf(result.getString("cpf"));
+        client.setEmail(result.getString("email"));
+        client.setPhone(result.getString("phone"));
+        result.close();
+        statement.close();
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return client;
   }
 }
