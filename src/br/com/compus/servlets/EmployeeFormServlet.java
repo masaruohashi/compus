@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.compus.controller.EmployeeController;
-import br.com.compus.controller.ValidateInputData;
+import br.com.compus.controller.ValidateData;
 import br.com.compus.dao.EmployeeDAO;
 import br.com.compus.models.Employee;
 
@@ -31,7 +31,6 @@ public class EmployeeFormServlet extends HttpServlet {
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    ValidateInputData validation = new ValidateInputData();
 
     String name  = request.getParameter("name");
     String cpf   = request.getParameter("cpf");
@@ -40,7 +39,7 @@ public class EmployeeFormServlet extends HttpServlet {
 		String address = request.getParameter("address");
 		String phone = request.getParameter("phone");
 
-    Map<String, String> employee_valid = validation.validateEmployee(name, cpf, email, role, address, phone);
+    Map<String, String> employee_valid = ValidateData.validate(name, cpf, email, address, phone);
 
     if (employee_valid.get("valid").matches("true")) {
       Employee employee = new Employee();
@@ -52,7 +51,8 @@ public class EmployeeFormServlet extends HttpServlet {
 			employee.setPhone(phone);
       try {
         if(EmployeeController.checkExistingEmployee(cpf)) {
-          response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=CPF ja cadastrado");
+          response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=CPF ja cadastrado&name=" + name +
+                                "&email=" + email + "&role=" + role + "&address=" + address + "&phone=" + phone);
         }
         else {
           if (EmployeeDAO.getInstance().create(employee)) {
@@ -67,7 +67,7 @@ public class EmployeeFormServlet extends HttpServlet {
       }
     }
     else {
-      response.sendRedirect(request.getContextPath() + employee_valid.get("url"));
+      response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=" + employee_valid.get("msg"));
     }
   }
 }
