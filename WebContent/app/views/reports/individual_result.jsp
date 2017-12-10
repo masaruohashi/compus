@@ -1,3 +1,7 @@
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page import="java.util.List" %>
+<%@ page import="br.com.compus.models.Report" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -48,7 +52,7 @@
         </ul>
       </nav>
       <div class="content col-sm-10">
-        <span class="h2">Relatório Individual</span>
+        <span class="h2"><%="Relatório Individual - " + request.getAttribute("employeeName") %></span>
         <hr>
           <div class="content-table">
             <table class="table" align="right">
@@ -60,21 +64,16 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>10/01/2017</td>
-                  <td>2</td>
-                  <td>R$1000,00</td>
-                </tr>
-                <tr>
-                  <td>12/01/2017</td>
-                  <td>3</td>
-                  <td>R$550,00</td>
-                </tr>
-                <tr>
-                  <td>15/01/2017</td>
-                  <td>6</td>
-                  <td>R$2500,00</td>
-                </tr>
+                <%List<Report> individualReports = (ArrayList<Report>) request.getAttribute("individualReports"); %>
+                <%for(Report report: individualReports) { %>
+                  <%Calendar calendar = report.getDate(); %>
+                  <%String date = calendar.get(Calendar.DATE) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.YEAR); %>
+	                <tr>
+	                  <td><%=date %></td>
+	                  <td><%=report.getNumSales() %></td>
+	                  <td><%="R$ " + String.valueOf(report.getTotalPrice()).replace(".", ",") %></td>
+	                </tr>
+                <% } %>
               </tbody>
             </table>
           </div>

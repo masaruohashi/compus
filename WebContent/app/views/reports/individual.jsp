@@ -8,8 +8,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Compus - Relatório Individual</title>
-  <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="../bower_components/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" type="text/css" href="../app/assets/stylesheets/admin_panel.css">
@@ -64,7 +64,7 @@
                   <select class="user-input pull-right" name="employee">
                     <% List<Employee> employees = (ArrayList<Employee>) request.getAttribute("employees"); %>
                     <% for(Employee employee: employees) { %>
-                      <option value="<%=employee.getName() %>"><%=employee.getName() %></option>
+                      <option value="<%=employee.getId() %>"><%=employee.getName() %></option>
                     <% } %>
                   </select>
                 </div>
@@ -86,5 +86,26 @@
         </div>
       </div>
   </div>
+    <% if(request.getParameter("msg") != null) { %>
+    <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="messageModalLabel">Mensagem</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= request.getParameter("msg") %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>$('#messageModal').modal({show: true})</script>
+  <% } %>
 </body>
 </html>

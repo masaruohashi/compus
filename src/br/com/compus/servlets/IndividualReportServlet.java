@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.compus.dao.EmployeeDAO;
+import br.com.compus.dao.ReportDAO;
 import br.com.compus.models.Employee;
+import br.com.compus.models.Report;
 
 @WebServlet("/relatorio/individual")
 public class IndividualReportServlet extends HttpServlet {
@@ -35,8 +37,22 @@ public class IndividualReportServlet extends HttpServlet {
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/reports/individual_result.jsp");
-    requestDispatcher.forward(request, response);
+    int employeeId = Integer.parseInt(request.getParameter("employee"));
+    try {
+      List<Report> generalReports = ReportDAO.getInstance().getIndividualReport(employeeId);
+      if(!generalReports.isEmpty()) {
+        Employee employee = EmployeeDAO.getInstance().findById(employeeId);
+        request.setAttribute("individualReports", generalReports);
+        request.setAttribute("employeeName", employee.getName());
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/reports/individual_result.jsp");
+        requestDispatcher.forward(request, response);        
+      }
+      else {
+        response.sendRedirect(request.getContextPath() + "/relatorio/individual?msg=Vendedor especificado nao contem vendas registradas");
+      }
+    } catch(SQLException e) {
+      e.printStackTrace();
+    }
   }
 
 }

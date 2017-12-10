@@ -46,4 +46,29 @@ public class ReportDAO extends BaseDAO {
     return generalReports;
   }
   
+  public List<Report> getIndividualReport(int employeeId) throws SQLException {
+    List<Report> individualReports = new ArrayList<Report>();
+    try {
+      String sql = "SELECT date, COUNT(id) as quantidade, SUM(final_price) as total FROM `order` " +
+          "WHERE employee_id = ? " +
+          "GROUP BY date ";
+      PreparedStatement statement = this.connection.prepareStatement(sql);
+      statement.setInt(1, employeeId);
+      ResultSet result = statement.executeQuery();
+      while(result.next()) {
+        //Convert Date SQL type to Calendar
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(result.getDate("date").getTime());
+        
+        Report report = new Report();
+        report.setDate(calendar);
+        report.setNumSales(result.getInt("quantidade"));
+        report.setTotalPrice(result.getDouble("total"));
+        individualReports.add(report);        
+      }
+    } catch(SQLException e) {
+      e.printStackTrace();
+    }
+    return individualReports;
+  }
 }
