@@ -1,16 +1,19 @@
 package br.com.compus.models;
 
 public class Memory extends ComputerPart{
-  private String name;
   private String type;
   private String capacity;
+  private String imageUrl;
 
-  public String getName() {
-    return name;
+  public Memory() {
+    super();
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public Memory(String name, double price, String type, String capacity) {
+    this.setName(name);
+    this.setPrice(price);
+    this.setType(type);
+    this.setCapacity(capacity);
   }
 
   public String getType() {
@@ -27,5 +30,17 @@ public class Memory extends ComputerPart{
   
   public void setCapacity(String capacity) {
     this.capacity = capacity;
+  }
+
+  public String productType() {
+    return "memory";
+  }
+  
+  public String getImageUrl() {
+    return imageUrl;
+  }
+  
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 }

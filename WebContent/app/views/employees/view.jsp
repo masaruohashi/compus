@@ -36,16 +36,19 @@
       <nav class="col-sm-2">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="registration.html"><span>Cadastro de Usuário</span></a>
+            <a class="nav-link active" href="funcionario"><span>Funcionários</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="user_list.html"><span>Listagem de Usuários</span></a>
+            <a class="nav-link" href="cliente"><span>Clientes</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="report.html"><span>Relatório Geral</span></a>
+            <a class="nav-link" href="#"><span>Relatório Geral</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"><span>Relatório Individual</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pedidos"><span>Pedidos</span></a>
           </li>
         </ul>
       </nav>
@@ -61,7 +64,7 @@
                   <label>Nome: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" value=<%=employee.getName() %> disabled>
+                  <input class="user-input pull-right" type="text" value="<%=employee.getName() %>" disabled>
                 </div>
               </div>
               <div class="row">
@@ -69,7 +72,7 @@
                   <label>CPF: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" value=<%=employee.getCpf() %> disabled>
+                  <input class="user-input pull-right" type="text" value="<%=employee.getCpf() %>" disabled>
                 </div>
               </div>
               <div class="row">
@@ -77,7 +80,7 @@
                   <label>Email: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" value=<%=employee.getEmail() %> disabled>
+                  <input class="user-input pull-right" type="text" value="<%=employee.getEmail() %>" disabled>
                 </div>
               </div>
               <div class="row">
@@ -85,7 +88,7 @@
                   <label>Telefone: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" value="(11) 11111-1111" disabled>
+                  <input class="user-input pull-right" type="text" value="<%=employee.getPhone() %>" disabled>
                 </div>
               </div>
               <div class="row">
@@ -93,7 +96,7 @@
                   <label>Endereço: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" value="Rua X, 1234, Butantã" disabled>
+                  <input class="user-input pull-right" type="text" value="<%=employee.getAddress() %>" disabled>
                 </div>
               </div>
               <div class="row">
@@ -101,14 +104,14 @@
                   <label>Função: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" value=<%=employee.getRole() %> disabled>
+                  <input class="user-input pull-right" type="text" value="<%=employee.getRole() %>" disabled>
                 </div>
               </div>
               <div class="row form-buttons">
                   <div class="col-sm-5 col-sm-offset-7">
                     <div class="row">
                       <div class="col-sm-6">
-                        <a href="${pageContext.request.contextPath }/funcionario" class="form-button btn btn-warning pull-right">Voltar</a>
+                        <a href="funcionario" class="form-button btn btn-warning pull-right">Voltar</a>
                       </div>
                     </div>
                   </div>

@@ -50,7 +50,7 @@
         <% } %>
         <% for(Memory memory: memories) { %>
           <div class="product">
-            <img src="app/assets/images/memory.jpg">
+            <img src="<%= memory.getImageUrl() %>">
             <span class="product-name"><%= memory.getName() %></span>
             <span class="product-price">R$ <%= memory.getFormattedPrice() %></span>
             <a class="btn btn-primary js-select-button" data-id="<%= memory.getId() %>">

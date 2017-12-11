@@ -88,3 +88,7 @@ header {
 .form-buttons > a {
   margin-right: 1%; 
 }
+
+.add-button {
+  margin-right: 2%;
+}

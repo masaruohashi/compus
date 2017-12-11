@@ -29,17 +29,17 @@ public class EmployeeServlet extends HttpServlet {
       if (id != null) {
         Employee employee = new Employee();
         employee = EmployeeDAO.getInstance().findById(Integer.parseInt(id));
-        System.out.println(employee.getName());
+        System.out.println(employee.getPhone());
         request.setAttribute("employee", employee);
         RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/employees/view.jsp");
         requestDispatcher.forward(request, response);
       }
       else {
-      	List<Employee> employees = null;
-      	employees = EmployeeDAO.getInstance().getAll();
-      	request.setAttribute("employees", employees);
-      	RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/employees/index.jsp");
-      	requestDispatcher.forward(request, response);
+        List<Employee> employees = null;
+        employees = EmployeeDAO.getInstance().getAll();
+        request.setAttribute("employees", employees);
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/employees/index.jsp");
+        requestDispatcher.forward(request, response);
       }
     } catch (SQLException e) {
       e.printStackTrace();

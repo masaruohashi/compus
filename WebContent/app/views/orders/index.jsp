@@ -1,3 +1,8 @@
+<%@page import="br.com.compus.models.Computer"%>
+<%@page import="br.com.compus.models.Memory"%>
+<%@page import="br.com.compus.models.Hd"%>
+<%@page import="br.com.compus.models.Cpu"%>
+<%@page import="br.com.compus.models.Motherboard"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="br.com.compus.models.Product"%>
 <%@page import="java.util.List"%>
@@ -38,35 +43,74 @@
   <div class="content">
     <span class="content-header">Resumo do Pedido</span>
     <hr class="content-line" />
-    <form action="carrinho" method="post">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Nome do Produto</th>
-            <th>Preço</th>
-            <th class="col-sm-2">Quantidade</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% List<Product> products = (ArrayList<Product>) request.getAttribute("products"); %>
-          <% for(Product product : products) { %>
-	          <tr>
-	            <td><%= product.getName() %></td>
-	            <td>R$ <%= product.getFormattedPrice() %></td>
-	            <td><input class="form-control" type="number" value="1" min="1" /></td>
-	          </tr>
-          <% } %>
-        </tbody>
-      </table>
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="pull-right">
-            <a href="login.html" class="btn btn-warning">Cancelar</a>
-            <a href="login.html" class="btn btn-primary">Finalizar</a>
+    <% List<Motherboard> motherboards = (ArrayList<Motherboard>) request.getAttribute("motherboards"); %>
+    <% List<Cpu> cpus = (ArrayList<Cpu>) request.getAttribute("cpus"); %>
+    <% List<Memory> memories = (ArrayList<Memory>) request.getAttribute("memories"); %>
+    <% List<Hd> hds = (ArrayList<Hd>) request.getAttribute("hds"); %>
+    <% List<Computer> computers = (ArrayList<Computer>) request.getAttribute("computers"); %>
+    <% if(motherboards.isEmpty() && cpus.isEmpty() && memories.isEmpty() && hds.isEmpty() && computers.isEmpty()) { %>
+      <div class="col-sm-12 text-center">
+        <span>Nenhum produto foi adicionado.</span>
+      </div>
+    <% } else { %>
+      <form action="carrinho" method="post" >
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nome do Produto</th>
+              <th class="col-sm-2">Quantidade</th>
+              <th>Preço</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(Motherboard motherboard : motherboards) { %>
+              <tr>
+                <td><%= motherboard.getName() %></td>
+                <td><input class="form-control" type="number" value="1" min="1" name="motherboard_<%= motherboard.getId() %>" /></td>
+                <td>R$ <%= motherboard.getFormattedPrice() %></td>
+              </tr>
+            <% } %>
+            <% for(Cpu cpu : cpus) { %>
+              <tr>
+                <td><%= cpu.getName() %></td>
+                <td><input class="form-control" type="number" value="1" min="1" name="cpu_<%= cpu.getId() %>" /></td>
+                <td>R$ <%= cpu.getFormattedPrice() %></td>
+              </tr>
+            <% } %>
+            <% for(Hd hd : hds) { %>
+              <tr>
+                <td><%= hd.getName() %></td>
+                <td><input class="form-control" type="number" value="1" min="1" name="hd_<%= hd.getId() %>" /></td>
+                <td>R$ <%= hd.getFormattedPrice() %></td>
+              </tr>
+            <% } %>
+            <% for(Memory memory : memories) { %>
+              <tr>
+                <td><%= memory.getName() %></td>
+                <td><input class="form-control" type="number" value="1" min="1" name="memory_<%= memory.getId() %>" /></td>
+                <td>R$ <%= memory.getFormattedPrice() %></td>
+              </tr>
+            <% } %>
+            <% for(int i = 0; i < computers.size(); i++) { %>
+              <% Computer computer = computers.get(i); %>
+              <tr>
+                <td><%= computer.getName() %></td>
+                <td><input class="form-control" type="number" value="1" min="1" name="computer_<%= i %>" /></td>
+                <td>R$ <%= computer.getFormattedPrice() %></td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="pull-right">
+              <a href="sair" class="btn btn-warning">Cancelar</a>
+              <input type="submit" class="btn btn-primary" value="Finalizar" />
+            </div>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
+    <% } %>
   </div>
 </body>
 </html>

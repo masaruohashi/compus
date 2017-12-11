@@ -1,17 +1,21 @@
 package br.com.compus.models;
 
 public class Motherboard extends ComputerPart{
-  private String name;
   private String socket;
   private int memorySlots;
   private String memoryType;
+  private String imageUrl;
 
-  public String getName() {
-    return name;
+  public Motherboard() {
+    super();
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public Motherboard(String name, Double price, String socket, int memorySlots, String memoryType) {
+    this.setName(name);
+    this.setPrice(price);
+    this.setSocket(socket);
+    this.setMemorySlots(memorySlots);
+    this.setMemoryType(memoryType);
   }
 
   public String getSocket() {
@@ -36,5 +40,17 @@ public class Motherboard extends ComputerPart{
   
   public void setMemoryType(String memoryType) {
     this.memoryType = memoryType;
+  }
+
+  public String productType() {
+    return "motherboard";
+  }
+  
+  public String getImageUrl() {
+    return imageUrl;
+  }
+  
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 }

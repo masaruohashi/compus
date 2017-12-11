@@ -50,7 +50,7 @@
         <% } %>
         <% for(Motherboard motherboard: motherboards) { %>
           <div class="product">
-            <img src="app/assets/images/motherboard.jpg">
+            <img src="<%= motherboard.getImageUrl() %>">
             <span class="product-name"><%= motherboard.getName() %></span>
             <span class="product-price">R$ <%= motherboard.getFormattedPrice() %></span>
             <a class="btn btn-primary js-select-button" data-id="<%= motherboard.getId() %>">

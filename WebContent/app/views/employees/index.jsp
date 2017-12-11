@@ -7,7 +7,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Compus - Usuários</title>
+  <title>Compus - Funcionários</title>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
@@ -37,21 +37,34 @@
       <nav class="col-sm-2">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link active" href="funcionario"><span>Listagem de Usuários</span></a>
+            <a class="nav-link active" href="funcionario"><span>Funcionários</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="funcionario/novo"><span>Cadastro de Usuário</span></a>
+              <a class="nav-link" href="cliente"><span>Clientes</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="report.html"><span>Relatório Geral</span></a>
+            <a class="nav-link" href="#"><span>Relatório Geral</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"><span>Relatório Individual</span></a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pedidos"><span>Pedidos</span></a>
+          </li>
         </ul>
       </nav>
       <div class="content col-sm-10">
-        <span class="h2">Listagem de Usuários</span>
+        <div class="row">
+          <div class="col-sm-10">
+            <span class="h2">Listagem de Funcionários</span>
+          </div>
+          <div clas="col-sm-2">
+            <a class="btn btn-primary pull-right add-button" href="funcionario/novo">
+              <i class="fa fa-user-plus" aria-hidden="true"></i>
+              <span>Adicionar</span>
+            </a>
+          </div>
+        </div>
         <hr>
         <div class="content-table">
           <table class="table">
