@@ -47,6 +47,9 @@
         <li class="nav-item">
           <a class="nav-link" href="#"><span>Relatório Individual</span></a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../pedidos"><span>Pedidos</span></a>
+        </li>
         </ul>
       </nav>
       <div class="content col-sm-10">
