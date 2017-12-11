@@ -35,11 +35,11 @@ public class EmployeeServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
       }
       else {
-      	List<Employee> employees = null;
-      	employees = EmployeeDAO.getInstance().getAll();
-      	request.setAttribute("employees", employees);
-      	RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/employees/index.jsp");
-      	requestDispatcher.forward(request, response);
+        List<Employee> employees = null;
+        employees = EmployeeDAO.getInstance().getAll();
+        request.setAttribute("employees", employees);
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/employees/index.jsp");
+        requestDispatcher.forward(request, response);
       }
     } catch (SQLException e) {
       e.printStackTrace();

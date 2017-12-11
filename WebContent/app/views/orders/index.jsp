@@ -104,7 +104,7 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="pull-right">
-              <a href="#" class="btn btn-warning">Cancelar</a>
+              <a href="sair" class="btn btn-warning">Cancelar</a>
               <input type="submit" class="btn btn-primary" value="Finalizar" />
             </div>
           </div>

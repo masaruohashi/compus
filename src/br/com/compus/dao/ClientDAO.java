@@ -98,4 +98,27 @@ public class ClientDAO extends BaseDAO {
     }
     return client;
   }
+
+  public Client findById(int id) throws SQLException {
+    Client client = null;
+    try {
+      String sql = "SELECT * FROM client WHERE id = ?";
+      PreparedStatement statement = this.connection.prepareStatement(sql);
+      statement.setInt(1, id);
+      ResultSet result = statement.executeQuery();
+      if(result.next()) {
+        client = new Client();
+        client.setId(result.getInt("id"));
+        client.setName(result.getString("name"));
+        client.setCpf(result.getString("cpf"));
+        client.setEmail(result.getString("email"));
+        client.setPhone(result.getString("phone"));
+        result.close();
+        statement.close();
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return client;
+  }
 }

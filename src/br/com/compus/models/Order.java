@@ -1,11 +1,35 @@
 package br.com.compus.models;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
+  private int id;
   private List<OrderItem> items;
   private double finalPrice;
+  private Date date;
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public Date getDate() {
+    return date;
+  }
+
+  public void setDate(Date date) {
+    this.date = date;
+  }
+
+  public void setItems(List<OrderItem> items) {
+    this.items = items;
+  }
+
   public double getFinalPrice() {
     return finalPrice;
   }
