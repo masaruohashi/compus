@@ -57,7 +57,7 @@
           </div>
           <div clas="col-sm-2">
             <a class="btn btn-primary pull-right add-button" href="funcionario/novo">
-              <i class="fa fa-plus" aria-hidden="true"></i>
+              <i class="fa fa-user-plus" aria-hidden="true"></i>
               <span>Adicionar</span>
             </a>
           </div>
