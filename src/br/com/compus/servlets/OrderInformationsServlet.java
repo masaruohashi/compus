@@ -41,7 +41,7 @@ public class OrderInformationsServlet extends HttpServlet {
     try {
       Employee employee = EmployeeDAO.getInstance().findByCpf(employeeCpf);
       Client client = ClientDAO.getInstance().findByCpf(clientCpf);
-      if(employee != null && client != null) {
+      if(employee != null && client != null && employee.getRole().equals("vendedor")) {
         HttpSession session = request.getSession();
         session.setAttribute("employee_cpf", employeeCpf);
         session.setAttribute("client_cpf", clientCpf);
