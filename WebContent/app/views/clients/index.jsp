@@ -8,12 +8,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Compus - Usuários</title>
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.css">
-  <link rel="stylesheet" type="text/css" href="app/assets/stylesheets/admin_panel.css">
-  <link rel="stylesheet" type="text/css" href="app/assets/stylesheets/user_list.css">
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../bower_components/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="../app/assets/stylesheets/admin_panel.css">
+  <link rel="stylesheet" type="text/css" href="../app/assets/stylesheets/user_list.css">
 </head>
 <body>
   <header class="container-fluid">
@@ -88,8 +88,8 @@
               <td><%= client.getAddress() %></td>
               <td><%= client.getPhone() %></td>
               <td>
-                <a href="#" class="btn btn-primary">Editar</a>
-                <a href="#" class="btn btn-danger">Excluir</a>
+                <a href="cliente/editar?id=<%=client.getId() %>" class="btn btn-primary">Editar</a>
+                <a href="cliente/deletar?id=<%=client.getId() %>" class="btn btn-danger">Excluir</a>
               </td>
             </tr>
             <% } %>

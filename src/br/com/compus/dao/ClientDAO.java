@@ -76,6 +76,27 @@ public class ClientDAO extends BaseDAO {
     return false;
   }
 
+  public boolean edit (Client client) throws SQLException {
+    String sql = "UPDATE client " +
+            "SET name = ?, email = ?, cpf = ?, address = ?, phone = ?" +
+            "WHERE  id = ?";
+    try {
+      PreparedStatement statement = this.connection.prepareStatement(sql);
+      statement.setString(1, client.getName());
+      statement.setString(2, client.getEmail());
+      statement.setString(3, client.getCpf());
+      statement.setString(4, client.getAddress());
+      statement.setString(5, client.getPhone());
+      statement.setInt(6, client.getId());
+      statement.execute();
+      statement.close();
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
+
   public Client findByCpf(String cpf) throws SQLException {
     Client client = null;
     try {
@@ -113,6 +134,7 @@ public class ClientDAO extends BaseDAO {
         client.setCpf(result.getString("cpf"));
         client.setEmail(result.getString("email"));
         client.setPhone(result.getString("phone"));
+        client.setAddress(result.getString("address"));
         result.close();
         statement.close();
       }
