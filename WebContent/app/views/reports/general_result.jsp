@@ -9,12 +9,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Compus - Relatório Geral</title>
-  <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="../bower_components/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" type="text/css" href="../app/assets/stylesheets/admin_panel.css">
-  <link rel="stylesheet" type="text/css" href="../app/assets/stylesheets/registration.css">
+  <link rel="stylesheet" type="text/css" href="../app/assets/stylesheets/user_list.css">
 </head>
 <body>
   <header class="container-fluid">
@@ -57,30 +57,31 @@
       <div class="content col-sm-10">
         <span class="h2"><%="Relatório Geral - " + request.getAttribute("date") %></span>
         <hr>
-          <div class="content-table">
-            <table class="table" align="right">
-              <thead>
-                <tr>
-                  <th>Data</th>
-                  <th>Quantidade de vendas</th>
-                  <th>Montante Bruto</th>
-                </tr>
-              </thead>
-              <tbody>
-                <%List<Report> generalReports = (ArrayList<Report>) request.getAttribute("generalReports"); %>
-                <%for(Report report: generalReports) { %>
-                  <%Calendar calendar = report.getDate(); %>
-	                <%String date = calendar.get(Calendar.DATE) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.YEAR); %>
-	                <tr>
-	                  <td><%=date %></td>
-	                  <td><%=report.getNumSales() %></td>
-	                  <td><%="R$ " + String.valueOf(report.getTotalPrice()).replace(".", ",") %></td>
-	                </tr>
-                <% } %>
-              </tbody>
-            </table>
-          </div>
+        <div class="content-table">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Quantidade de vendas</th>
+                <th>Montante Bruto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%List<Report> generalReports = (ArrayList<Report>) request.getAttribute("generalReports"); %>
+              <%for(Report report: generalReports) { %>
+                <%Calendar calendar = report.getDate(); %>
+               <%String date = calendar.get(Calendar.DATE) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.YEAR); %>
+               <tr>
+                 <td><%=date %></td>
+                 <td><%=report.getNumSales() %></td>
+                 <td><%="R$ " + String.format("%.2f", report.getTotalPrice()).replace(".", ",") %></td>
+               </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
       </div>
+    </div>
   </div>
 </body>
 </html>
