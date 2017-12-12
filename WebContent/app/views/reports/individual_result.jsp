@@ -38,16 +38,19 @@
       <nav class="col-sm-2">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="../funcionario"><span>Listagem de Usuários</span></a>
+            <a class="nav-link" href="../funcionario"><span>Funcionários</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="../funcionario/novo"><span>Cadastro de Usuário</span></a>
+              <a class="nav-link" href="../cliente"><span>Clientes</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../relatorio/geral"><span>Relatório Geral</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href=""><span>Relatório Individual</span></a>
+            <a class="nav-link active" href="../relatorio/individual"><span>Relatório Individual</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../pedidos"><span>Pedidos</span></a>
           </li>
         </ul>
       </nav>

@@ -44,13 +44,13 @@
               <a class="nav-link" href="cliente"><span>Clientes</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><span>Relatório Geral</span></a>
+            <a class="nav-link" href="relatorio/geral"><span>Relatório Geral</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><span>Relatório Individual</span></a>
+            <a class="nav-link" href="relatorio/individual"><span>Relatório Individual</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#"><span>Pedidos</span></a>
+            <a class="nav-link active" href="pedidos"><span>Pedidos</span></a>
           </li>
         </ul>
       </nav>
