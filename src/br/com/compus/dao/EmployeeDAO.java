@@ -41,6 +41,33 @@ public class EmployeeDAO extends BaseDAO{
     }
     return employees;
   }
+  
+  public List<Employee> getAllSellers() throws SQLException {
+    List<Employee> employees = new ArrayList<Employee>();
+    try {
+      String sql = "SELECT * FROM employee " +
+                   "WHERE role = 'vendedor'";
+      PreparedStatement statement = this.connection.prepareStatement(sql);
+      System.out.println(statement.toString());
+      ResultSet result = statement.executeQuery();
+      while(result.next()) {
+        Employee employee = new Employee();
+        employee.setId(result.getInt("id"));
+        employee.setName(result.getString("name"));
+        employee.setCpf(result.getString("cpf"));
+        employee.setEmail(result.getString("email"));
+        employee.setRole(result.getString("role"));
+        employee.setAddress(result.getString("address"));
+        employee.setPhone(result.getString("phone"));
+        employees.add(employee);
+      }
+      result.close();
+      statement.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return employees;
+  }
 
   public Employee findById(int id) throws SQLException {
     Employee employee = null;

@@ -71,7 +71,7 @@
                       <% int month = actualMonth - i; %>
                       <% calendar.set(Calendar.MONTH, month); %>
                       <% calendar.set(Calendar.YEAR, actualYear); %>
-                      <% String stringMonth = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT_FORMAT, Locale.getDefault()); %>
+                      <% String stringMonth = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT_FORMAT, Locale.forLanguageTag("pt")); %>
                       <% String date = stringMonth + "/" + calendar.get(Calendar.YEAR); %>
                       <option value="<%=calendar.get(Calendar.MONTH)%>/<%=calendar.get(Calendar.YEAR)%>"><%=date %></option>
                     <% } %>
