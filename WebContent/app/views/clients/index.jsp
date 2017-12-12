@@ -88,8 +88,8 @@
               <td><%= client.getAddress() %></td>
               <td><%= client.getPhone() %></td>
               <td>
-                <a href="#" class="btn btn-primary">Editar</a>
-                <a href="#" class="btn btn-danger">Excluir</a>
+                <a href="cliente/editar?id=<%=client.getId() %>" class="btn btn-primary">Editar</a>
+                <a href="cliente/deletar?id=<%=client.getId() %>" class="btn btn-danger">Excluir</a>
               </td>
             </tr>
             <% } %>
