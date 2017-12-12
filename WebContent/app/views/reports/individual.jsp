@@ -1,15 +1,14 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="br.com.compus.models.Employee"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="br.com.compus.models.Employee"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Compus - Editar</title>
-  <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="../bower_components/jquery/dist/jquery.mask.min.js"></script>
-  <script src="../bower_components/jquery/dist/masks.js"></script>
+  <title>Compus - Relatório Individual</title>
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
   <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="../bower_components/font-awesome/css/font-awesome.css">
@@ -38,7 +37,7 @@
       <nav class="col-sm-2">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link active" href="../funcionario"><span>Funcionários</span></a>
+            <a class="nav-link" href="../funcionario"><span>Funcionários</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../cliente"><span>Clientes</span></a>
@@ -47,7 +46,7 @@
             <a class="nav-link" href="../relatorio/geral"><span>Relatório Geral</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../relatorio/individual"><span>Relatório Individual</span></a>
+            <a class="nav-link active" href="../relatorio/individual"><span>Relatório Individual</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../pedidos"><span>Pedidos</span></a>
@@ -55,72 +54,32 @@
         </ul>
       </nav>
       <div class="content col-sm-10">
-        <span class="h2">Edição de Funcionário</span>
-        <%Employee employee = (Employee) request.getAttribute("employee"); %>
+        <span class="h2">Relatório Individual</span>
         <hr>
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
-            <form class="user-form" method="post">
+            <form class="user-form" method="post" >
               <div class="row">
                 <div class="col-sm-3">
-                  <label>Nome: </label>
+                  <label>Funcionário: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="name" value="<%=employee.getName() %>" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-3">
-                  <label>CPF: </label>
-                </div>
-                <div class="col-sm-9">
-                  <input class="cpf user-input pull-right" type="text" name="cpf" value="<%=employee.getCpf() %>" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-3">
-                  <label>Email: </label>
-                </div>
-                <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="email" value="<%=employee.getEmail() %>" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-3">
-                  <label>Telefone: </label>
-                </div>
-                <div class="col-sm-9">
-                  <input class="phone user-input pull-right" type="text" name="phone" value="<%=employee.getPhone() %>" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-3">
-                  <label>Endereço: </label>
-                </div>
-                <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="address" value="<%=employee.getAddress() %>" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-3">
-                  <label>Função: </label>
-                </div>
-                <div class="col-sm-9">
-                  <select class="user-input pull-right" name="role">
-                  	<%for (String role: Employee.ACCEPTED_ROLES) {%>
-                    <option value="<%=role %>" <%if (employee.getRole().matches(role)) {%> selected <%} %>><%=role %></option>
-                    <%} %>
+                  <select class="user-input pull-right" name="employee">
+                    <% List<Employee> employees = (ArrayList<Employee>) request.getAttribute("employees"); %>
+                    <% for(Employee employee: employees) { %>
+                      <option value="<%=employee.getId() %>"><%=employee.getName() %></option>
+                    <% } %>
                   </select>
                 </div>
               </div>
               <div class="row form-buttons">
-                <div class="col-sm-5 col-sm-offset-7">
+                <div class="col-xs-6 col-sm-offset-6">
                   <div class="row">
-                    <div class="col-sm-6">
-                      <a href="../funcionario" class="form-button btn btn-warning pull-right">Cancelar</a>
+                    <div class="col-sm-5">
+                      <a href="#" class="form-button btn btn-warning pull-right">Cancelar</a>
                     </div>
-                    <div class="col-sm-6">
-                      <button type="submit" class="form-button btn btn-primary pull-right">Enviar</button>
+                    <div class="col-sm-7">
+                      <button type="submit" class="form-button btn btn-primary pull-right">Gerar relatório</button>
                     </div>
                   </div>
                 </div>
@@ -130,7 +89,7 @@
         </div>
       </div>
   </div>
-  <% if(request.getParameter("msg") != null) { %>
+    <% if(request.getParameter("msg") != null) { %>
     <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -150,6 +109,6 @@
       </div>
     </div>
     <script>$('#messageModal').modal({show: true})</script>
-<% } %>
+  <% } %>
 </body>
 </html>
