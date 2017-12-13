@@ -16,14 +16,14 @@
   <link rel="stylesheet" type="text/css" href="../app/assets/stylesheets/registration.css">
 </head>
 <body>
-<header class="container-fluid">
-  <div class="header-row row">
-    <div class="col-sm-7 pull-left">
-      <h1 class="logo">COMPUS</h1>
-    </div>
-    <div class="col-sm-5">
-        <span class="current-username pull-right">username</h3>
-          <a href="index.html">
+  <header class="container-fluid">
+    <div class="header-row row">
+      <div class="col-sm-7 pull-left">
+        <h1 class="logo">COMPUS</h1>
+      </div>
+      <div class="col-sm-5">
+        <span class="current-username pull-right"><%=session.getAttribute("admin_name") %></h3>
+        <a href="../logout">
           <span class="fa-stack fa-lg">
             <i class="fa fa-circle-thin fa-stack-2x"></i>
             <i class="fa fa-sign-out fa-stack-1x"></i>
