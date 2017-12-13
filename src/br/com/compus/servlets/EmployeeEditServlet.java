@@ -19,10 +19,10 @@ import br.com.compus.services.DataValidator;
 @WebServlet("/funcionario/editar")
 public class EmployeeEditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public EmployeeEditServlet() {
-        super();
-    }
+
+	public EmployeeEditServlet() {
+		super();
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Employee employee = new Employee();
@@ -37,55 +37,51 @@ public class EmployeeEditServlet extends HttpServlet {
 		}
 	}
 
-//	/**
-//	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-//	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	  int id = Integer.parseInt(request.getParameter("id"));
-	  String name = request.getParameter("name");
-	  String cpf = request.getParameter("cpf");
-	  String email = request.getParameter("email");
-	  String role = request.getParameter("role");
-	  String address = request.getParameter("address");
-	  String phone = request.getParameter("phone");
-	  String password = request.getParameter("password");
-	  String password2 = request.getParameter("password2");
+		int id = Integer.parseInt(request.getParameter("id"));
+		String name = request.getParameter("name");
+		String cpf = request.getParameter("cpf");
+		String email = request.getParameter("email");
+		String role = request.getParameter("role");
+		String address = request.getParameter("address");
+		String phone = request.getParameter("phone");
+		String password = request.getParameter("password");
 
-	  Map<String, String> employeeValid = DataValidator.validate(name, cpf, email, role, address, phone, password, password2);
+		Map<String, String> employeeValid = DataValidator.validate(name, cpf, email, role, address, phone, password);
 
-	  if(employeeValid.get("valid").matches("true")) {
-	    Employee employee = new Employee();
-	    employee.setId(id);
-	    employee.setName(name);
-	    employee.setCpf(cpf);
-	    employee.setEmail(email);
-	    employee.setRole(role);
-	    employee.setAddress(address);
-	    employee.setPhone(phone);
+		if(employeeValid.get("valid").matches("true")) {
+			Employee employee = new Employee();
+			employee.setId(id);
+			employee.setName(name);
+			employee.setCpf(cpf);
+			employee.setEmail(email);
+			employee.setRole(role);
+			employee.setAddress(address);
+			employee.setPhone(phone);
 			if (role.matches("administrador"))
-	    	employee.setPassword(password);
+				employee.setPassword(password);
 			else
 				employee.setPassword(null);
 
-	    try {
-	      if(EmployeeExistenceValidator.checkExistingEmployeeForEdit(cpf, id)) {
-	        response.sendRedirect(request.getContextPath() + "/funcionario/editar?id=" + id + "&msg=CPF ja cadastrado");
-	      }
-	      else {
-	        if (EmployeeDAO.getInstance().edit(employee)) {
-	          response.sendRedirect(request.getContextPath() + "/funcionario?msg=Usuario editado com sucesso");
-	        }
-	        else {
+			try {
+				if(EmployeeExistenceValidator.checkExistingEmployeeForEdit(cpf, id)) {
+					response.sendRedirect(request.getContextPath() + "/funcionario/editar?id=" + id + "&msg=CPF ja cadastrado");
+				}
+				else {
+					if (EmployeeDAO.getInstance().edit(employee)) {
+						response.sendRedirect(request.getContextPath() + "/funcionario?msg=Usuario editado com sucesso");
+					}
+					else {
 						response.sendRedirect(request.getContextPath() + "/funcionario/editar?msg=Falha ao editar funcionario");
-	        }	        
-	      }
-	    } catch (SQLException e) {
-	      e.printStackTrace();
-	    }
-	  }
-	  else {
-	    response.sendRedirect(request.getContextPath() + "/funcionario/editar?id=" + id + "&msg=" + employeeValid.get("msg"));
-	  }
+					}
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		else {
+			response.sendRedirect(request.getContextPath() + "/funcionario/editar?id=" + id + "&msg=" + employeeValid.get("msg"));
+		}
 	}
 
 }

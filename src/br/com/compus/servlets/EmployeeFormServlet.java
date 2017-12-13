@@ -19,7 +19,7 @@ import br.com.compus.services.DataValidator;
 
 @WebServlet("/funcionario/novo")
 public class EmployeeFormServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
   public EmployeeFormServlet() {
     super();
@@ -36,12 +36,11 @@ public class EmployeeFormServlet extends HttpServlet {
     String cpf   = request.getParameter("cpf");
     String email = request.getParameter("email");
     String role  = request.getParameter("role");
-		String address = request.getParameter("address");
-		String phone = request.getParameter("phone");
+    String address = request.getParameter("address");
+    String phone = request.getParameter("phone");
     String password = request.getParameter("password");
-    String password2 = request.getParameter("password2");
 
-    Map<String, String> employeeValid = DataValidator.validate(name, cpf, email, role, address, phone, password, password2);
+    Map<String, String> employeeValid = DataValidator.validate(name, cpf, email, role, address, phone, password);
 
     if (employeeValid.get("valid").matches("true")) {
       Employee employee = new Employee();
@@ -49,17 +48,17 @@ public class EmployeeFormServlet extends HttpServlet {
       employee.setCpf(cpf);
       employee.setEmail(email);
       employee.setRole(role);
-			employee.setAddress(address);
-			employee.setPhone(phone);
-			if (role.matches("administrador"))
-			  employee.setPassword(password);
-			else
-			  employee.setPassword(null);
+      employee.setAddress(address);
+      employee.setPhone(phone);
+      if (role.matches("administrador"))
+        employee.setPassword(password);
+      else
+        employee.setPassword(null);
 
       try {
         if(EmployeeExistenceValidator.checkExistingEmployeeForCreate(cpf)) {
           response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=CPF ja cadastrado&name=" + name +
-                                "&email=" + email + "&role=" + role + "&address=" + address + "&phone=" + phone);
+                  "&email=" + email + "&role=" + role + "&address=" + address + "&phone=" + phone);
         }
         else {
           if (EmployeeDAO.getInstance().create(employee)) {

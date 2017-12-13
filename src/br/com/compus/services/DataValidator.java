@@ -5,10 +5,10 @@ import java.util.Map;
 
 public class DataValidator {
 
-  public static Map<String, String> validate(String name, String cpf, String email, String role, String address, String phone, String pwd, String pwd2) {
+  public static Map<String, String> validate(String name, String cpf, String email, String role, String address, String phone, String pwd) {
     Map<String, String> map = new HashMap<String, String>();
     String invalidField = null;
-    
+
     map.put("valid", "true");
 
     if (name.matches(".*\\d+.*") || name.isEmpty()) {
@@ -35,14 +35,10 @@ public class DataValidator {
       map.put("valid", "false");
       invalidField = "senha";
     }
-    else if (!pwd.matches(pwd2)) {
-      map.put("valid", "false");
-      invalidField = "senha";
-    }
-    
+
     map.put("msg", "Insira um " + invalidField + " valido&name=" + name +
             "&cpf=" + cpf + "&email=" + email + "&role=" + role + "&address=" + address + "&phone=" + phone);
-    
+
     return map;
   }
 

@@ -25,7 +25,7 @@ public class ClientEditServlet extends HttpServlet {
     String email = request.getParameter("email");
     String name = request.getParameter("name");
 
-    Map<String, String> clientValid = DataValidator.validate(name, cpf, email, "", address, phone, "", "");
+    Map<String, String> clientValid = DataValidator.validate(name, cpf, email, "", address, phone, "");
 
     if(clientValid.get("valid").matches("true")) {
       Client client = new Client();
@@ -38,10 +38,9 @@ public class ClientEditServlet extends HttpServlet {
       client.setName(request.getParameter("name"));
 
       try {
-        if (ClientExistenceValidator.checkExistingClientForCreate(cpf)) {
+        if (ClientExistenceValidator.checkExistingClientForEdit(cpf, id)) {
           response.sendRedirect(request.getContextPath() + "/cliente/editar?id=" + id + "&msg=CPF ja cadastrado");
-        }
-        else {
+        } else {
           if (ClientDAO.getInstance().edit(client)) {
             response.sendRedirect(request.getContextPath() + "/cliente?msg=Cliente editado com sucesso");
           } else {
