@@ -24,7 +24,7 @@ public class ClientFormServlet extends HttpServlet {
     String address = request.getParameter("address");
     String phone = request.getParameter("phone");
 
-    Map<String, String> clientValid = DataValidator.validate(name, cpf, email, address, phone);
+    Map<String, String> clientValid = DataValidator.validate(name, cpf, email, "", address, phone, "");
 
     if (clientValid.get("valid").matches("true")) {
       Client client = new Client();

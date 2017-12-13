@@ -32,6 +32,7 @@ public class EmployeeDAO extends BaseDAO{
         employee.setRole(result.getString("role"));
         employee.setAddress(result.getString("address"));
         employee.setPhone(result.getString("phone"));
+        employee.setPassword(result.getString("password"));
         employees.add(employee);
       }
       result.close();
@@ -59,6 +60,7 @@ public class EmployeeDAO extends BaseDAO{
         employee.setRole(result.getString("role"));
         employee.setAddress(result.getString("address"));
         employee.setPhone(result.getString("phone"));
+        employee.setPassword(result.getString("password"));
         employees.add(employee);
       }
       result.close();
@@ -85,6 +87,7 @@ public class EmployeeDAO extends BaseDAO{
         employee.setRole(result.getString("role"));
         employee.setAddress(result.getString("address"));
         employee.setPhone(result.getString("phone"));
+        employee.setPassword(result.getString("password"));
         result.close();
         statement.close();
       }
@@ -110,6 +113,7 @@ public class EmployeeDAO extends BaseDAO{
         employee.setRole(result.getString("role"));
         employee.setAddress(result.getString("address"));
         employee.setPhone(result.getString("phone"));
+        employee.setPassword(result.getString("password"));
         result.close();
         statement.close();
       }
@@ -134,8 +138,8 @@ public class EmployeeDAO extends BaseDAO{
   }
 
   public boolean create(Employee employee) throws SQLException {
-    String sql = "INSERT INTO employee (name, email, cpf, role, address, phone)" +
-                 "VALUES (?, ?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO employee (name, email, cpf, role, address, phone, password) " +
+                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
     try {
       PreparedStatement statement = this.connection.prepareStatement(sql);
       statement.setString(1, employee.getName());
@@ -144,6 +148,7 @@ public class EmployeeDAO extends BaseDAO{
       statement.setString(4, employee.getRole());
       statement.setString(5, employee.getAddress());
       statement.setString(6, employee.getPhone());
+      statement.setString(7, employee.getPassword());
       statement.execute();
       statement.close();
       return true;
@@ -155,7 +160,7 @@ public class EmployeeDAO extends BaseDAO{
 
   public boolean edit (Employee employee) throws SQLException {
     String sql = "UPDATE employee " +
-             "SET name = ?, email = ?, cpf = ?, role = ?, address = ?, phone = ?" +
+             "SET name = ?, email = ?, cpf = ?, role = ?, address = ?, phone = ?, password = ? " +
              "WHERE  id = ?";
     try {
       PreparedStatement statement = this.connection.prepareStatement(sql);
@@ -165,7 +170,8 @@ public class EmployeeDAO extends BaseDAO{
       statement.setString(4 , employee.getRole());
       statement.setString(5, employee.getAddress());
       statement.setString(6, employee.getPhone());
-      statement.setInt(7, employee.getId());
+      statement.setString(7, employee.getPassword());
+      statement.setInt(8, employee.getId());
       statement.execute();
       statement.close();
       return true;

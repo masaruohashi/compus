@@ -37,9 +37,9 @@ public class EmployeeEditServlet extends HttpServlet {
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+//	/**
+//	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+//	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	  int id = Integer.parseInt(request.getParameter("id"));
 	  String name = request.getParameter("name");
@@ -48,8 +48,9 @@ public class EmployeeEditServlet extends HttpServlet {
 	  String role = request.getParameter("role");
 	  String address = request.getParameter("address");
 	  String phone = request.getParameter("phone");
+	  String password = request.getParameter("password");
 	  
-	  Map<String, String> client_valid = DataValidator.validate(name, cpf, email, address, phone);
+	  Map<String, String> client_valid = DataValidator.validate(name, cpf, email, role, address, phone, password);
 	  if(client_valid.get("valid").matches("true")) {
 	    Employee employee = new Employee();
 	    employee.setId(id);
@@ -59,6 +60,7 @@ public class EmployeeEditServlet extends HttpServlet {
 	    employee.setRole(role);
 	    employee.setAddress(address);
 	    employee.setPhone(phone);
+	    employee.setPassword(password);
 	    try {
 	      if(EmployeeExistenceValidator.checkExistingEmployeeForEdit(request.getParameter("cpf"), Integer.parseInt(request.getParameter("id")))) {
 	        response.sendRedirect(request.getContextPath() + "/funcionario/editar?id=" + id + "&msg=CPF ja cadastrado");
@@ -76,7 +78,7 @@ public class EmployeeEditServlet extends HttpServlet {
 	    }
 	  }
 	  else {
-	    response.sendRedirect(request.getContextPath() + "/funcionario/editar?id=" + id + "&msg" + client_valid.get("msg"));
+	    response.sendRedirect(request.getContextPath() + "/funcionario/editar?id=" + id + "&msg=" + client_valid.get("msg"));
 	  }
 	}
 

@@ -129,7 +129,7 @@
                   <label>Função: </label>
                 </div>
                 <div class="col-sm-9">
-                  <select class="user-input pull-right" name="role">
+                  <select class="user-input pull-right" name="role" id="role">
                     <%for (String role: Employee.ACCEPTED_ROLES) { %>
                       <% if (request.getParameter("role") != null) { %>
                         <option value=<%=role%> <%if (request.getParameter("role").matches(role)) { %> selected <% } %> > <%=role %> </option>
@@ -139,6 +139,14 @@
                       <% }
                     }   %>
                   </select>
+                </div>
+              </div>
+              <div class="row" style="display:none;" id="pwd" name="pwd">
+                <div class="col-sm-3">
+                  <label>Senha: </label>
+                </div>
+                <div class="col-sm-9">
+                  <input class="user-input pull-right" type="text" name="password" />
                 </div>
               </div>
               <div class="row form-buttons">
@@ -179,5 +187,24 @@
     </div>
     <script>$('#messageModal').modal({show: true})</script>
 <% } %>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>‌​
+<script>
+  if ($('#role').val()==="administrador"){
+    $("#pwd").show()
+  }
+  else{
+    $("#pwd").hide()
+  }
+
+  $('#role').on('change',function(){
+    if( $(this).val()==="administrador"){
+      $("#pwd").show()
+    }
+    else{
+      $("#pwd").hide()
+    }
+  });
+</script>
 </body>
 </html>

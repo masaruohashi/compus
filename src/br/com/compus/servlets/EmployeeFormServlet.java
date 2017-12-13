@@ -38,8 +38,14 @@ public class EmployeeFormServlet extends HttpServlet {
     String role  = request.getParameter("role");
 		String address = request.getParameter("address");
 		String phone = request.getParameter("phone");
+    String password;
 
-    Map<String, String> employeeValid = DataValidator.validate(name, cpf, email, address, phone);
+    if (role.matches("administrador"))
+      password = request.getParameter("password");
+    else
+      password = null;
+
+    Map<String, String> employeeValid = DataValidator.validate(name, cpf, email, role, address, phone, password);
 
     if (employeeValid.get("valid").matches("true")) {
       Employee employee = new Employee();
@@ -49,6 +55,7 @@ public class EmployeeFormServlet extends HttpServlet {
       employee.setRole(role);
 			employee.setAddress(address);
 			employee.setPhone(phone);
+			employee.setPassword(password);
       try {
         if(EmployeeExistenceValidator.checkExistingEmployeeForCreate(cpf)) {
           response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=CPF ja cadastrado&name=" + name +
@@ -56,7 +63,6 @@ public class EmployeeFormServlet extends HttpServlet {
         }
         else {
           if (EmployeeDAO.getInstance().create(employee)) {
-            
             response.sendRedirect(request.getContextPath() + "/funcionario?msg=Usuario criado com sucesso");
           } else {
             doGet(request, response);
