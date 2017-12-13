@@ -25,7 +25,7 @@ public class AdminLoginServlet extends HttpServlet {
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     HttpSession session = request.getSession(false);
-    if(session == null || session.getAttribute("admin_cpf") == null || session.getAttribute("admin_password") == null) {
+    if(session == null || session.getAttribute("admin_name") == null) {
       RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/admin/login.jsp");
       requestDispatcher.forward(request, response);
     } else {
