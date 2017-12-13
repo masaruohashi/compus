@@ -48,7 +48,6 @@ public class EmployeeDAO extends BaseDAO{
       String sql = "SELECT * FROM employee " +
                    "WHERE role = 'vendedor'";
       PreparedStatement statement = this.connection.prepareStatement(sql);
-      System.out.println(statement.toString());
       ResultSet result = statement.executeQuery();
       while(result.next()) {
         Employee employee = new Employee();
