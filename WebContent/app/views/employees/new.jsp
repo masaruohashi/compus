@@ -146,7 +146,15 @@
                   <label>Senha: </label>
                 </div>
                 <div class="col-sm-9">
-                  <input class="user-input pull-right" type="text" name="password" />
+                  <input class="user-input pull-right" type="password" name="password" />
+                </div>
+              </div>
+              <div class="row" style="display:none;" id="pwd2" name="pwd2">
+                <div class="col-sm-3">
+                  <label>Repita a senha: </label>
+                </div>
+                <div class="col-sm-9">
+                  <input class="user-input pull-right" type="password" name="password2" />
                 </div>
               </div>
               <div class="row form-buttons">
@@ -192,17 +200,21 @@
 <script>
   if ($('#role').val()==="administrador"){
     $("#pwd").show()
+    $("#pwd2").show()
   }
   else{
     $("#pwd").hide()
+    $("#pwd2").hide()
   }
 
   $('#role').on('change',function(){
     if( $(this).val()==="administrador"){
       $("#pwd").show()
+      $("#pwd2").show()
     }
     else{
       $("#pwd").hide()
+      $("#pwd2").hide()
     }
   });
 </script>

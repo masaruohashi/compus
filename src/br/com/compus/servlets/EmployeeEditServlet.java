@@ -49,9 +49,11 @@ public class EmployeeEditServlet extends HttpServlet {
 	  String address = request.getParameter("address");
 	  String phone = request.getParameter("phone");
 	  String password = request.getParameter("password");
-	  
-	  Map<String, String> client_valid = DataValidator.validate(name, cpf, email, role, address, phone, password);
-	  if(client_valid.get("valid").matches("true")) {
+	  String password2 = request.getParameter("password2");
+
+	  Map<String, String> employeeValid = DataValidator.validate(name, cpf, email, role, address, phone, password, password2);
+
+	  if(employeeValid.get("valid").matches("true")) {
 	    Employee employee = new Employee();
 	    employee.setId(id);
 	    employee.setName(name);
@@ -60,9 +62,13 @@ public class EmployeeEditServlet extends HttpServlet {
 	    employee.setRole(role);
 	    employee.setAddress(address);
 	    employee.setPhone(phone);
-	    employee.setPassword(password);
+			if (role.matches("administrador"))
+	    	employee.setPassword(password);
+			else
+				employee.setPassword(null);
+
 	    try {
-	      if(EmployeeExistenceValidator.checkExistingEmployeeForEdit(request.getParameter("cpf"), Integer.parseInt(request.getParameter("id")))) {
+	      if(EmployeeExistenceValidator.checkExistingEmployeeForEdit(cpf, id)) {
 	        response.sendRedirect(request.getContextPath() + "/funcionario/editar?id=" + id + "&msg=CPF ja cadastrado");
 	      }
 	      else {
@@ -70,7 +76,7 @@ public class EmployeeEditServlet extends HttpServlet {
 	          response.sendRedirect(request.getContextPath() + "/funcionario?msg=Usuario editado com sucesso");
 	        }
 	        else {
-	          doGet(request, response);
+						response.sendRedirect(request.getContextPath() + "/funcionario/editar?msg=Falha ao editar funcionario");
 	        }	        
 	      }
 	    } catch (SQLException e) {
@@ -78,7 +84,7 @@ public class EmployeeEditServlet extends HttpServlet {
 	    }
 	  }
 	  else {
-	    response.sendRedirect(request.getContextPath() + "/funcionario/editar?id=" + id + "&msg=" + client_valid.get("msg"));
+	    response.sendRedirect(request.getContextPath() + "/funcionario/editar?id=" + id + "&msg=" + employeeValid.get("msg"));
 	  }
 	}
 
