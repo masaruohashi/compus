@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.compus.dao.OrderDAO;
 import br.com.compus.decorators.OrderDecorator;
@@ -24,11 +25,16 @@ public class OrdersShowServlet extends HttpServlet{
   }
 
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    String orderId = request.getParameter("id");
-    if(orderId == null) {
-      showAll(request, response);
+    HttpSession session = request.getSession(false);
+    if(session == null || session.getAttribute("admin_name") == null) {
+      response.sendRedirect(request.getContextPath() + "/login");
     } else {
-      showById(request, response);
+      String orderId = request.getParameter("id");
+      if(orderId == null) {
+        showAll(request, response);
+      } else {
+        showById(request, response);
+      }
     }
   }
 

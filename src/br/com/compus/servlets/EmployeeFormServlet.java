@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.compus.dao.EmployeeDAO;
 import br.com.compus.models.Employee;
@@ -26,48 +27,57 @@ public class EmployeeFormServlet extends HttpServlet {
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/employees/new.jsp");
-    requestDispatcher.forward(request, response);
+    HttpSession session = request.getSession(false);
+    if(session == null || session.getAttribute("admin_name") == null) {
+      response.sendRedirect(request.getContextPath() + "/login");
+    } else {
+      RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/app/views/employees/new.jsp");
+      requestDispatcher.forward(request, response);
+    }
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    String name  = request.getParameter("name");
-    String cpf   = request.getParameter("cpf");
-    String email = request.getParameter("email");
-    String role  = request.getParameter("role");
-		String address = request.getParameter("address");
-		String phone = request.getParameter("phone");
-
-    Map<String, String> employeeValid = DataValidator.validate(name, cpf, email, address, phone);
-
-    if (employeeValid.get("valid").matches("true")) {
-      Employee employee = new Employee();
-      employee.setName(name);
-      employee.setCpf(cpf);
-      employee.setEmail(email);
-      employee.setRole(role);
-			employee.setAddress(address);
-			employee.setPhone(phone);
-      try {
-        if(EmployeeExistenceValidator.checkExistingEmployeeForCreate(cpf)) {
-          response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=CPF ja cadastrado&name=" + name +
-                                "&email=" + email + "&role=" + role + "&address=" + address + "&phone=" + phone);
-        }
-        else {
-          if (EmployeeDAO.getInstance().create(employee)) {
-            
-            response.sendRedirect(request.getContextPath() + "/funcionario?msg=Usuario criado com sucesso");
-          } else {
-            doGet(request, response);
+    HttpSession session = request.getSession(false);
+    if(session == null || session.getAttribute("admin_name") == null) {
+      response.sendRedirect(request.getContextPath() + "/login");
+    } else {
+      String name  = request.getParameter("name");
+      String cpf   = request.getParameter("cpf");
+      String email = request.getParameter("email");
+      String role  = request.getParameter("role");
+      String address = request.getParameter("address");
+      String phone = request.getParameter("phone");
+      
+      Map<String, String> employeeValid = DataValidator.validate(name, cpf, email, address, phone);
+      
+      if (employeeValid.get("valid").matches("true")) {
+        Employee employee = new Employee();
+        employee.setName(name);
+        employee.setCpf(cpf);
+        employee.setEmail(email);
+        employee.setRole(role);
+        employee.setAddress(address);
+        employee.setPhone(phone);
+        try {
+          if(EmployeeExistenceValidator.checkExistingEmployeeForCreate(cpf)) {
+            response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=CPF ja cadastrado&name=" + name +
+                "&email=" + email + "&role=" + role + "&address=" + address + "&phone=" + phone);
           }
+          else {
+            if (EmployeeDAO.getInstance().create(employee)) {
+              
+              response.sendRedirect(request.getContextPath() + "/funcionario?msg=Usuario criado com sucesso");
+            } else {
+              doGet(request, response);
+            }
+          }
+        } catch (SQLException e) {
+          e.printStackTrace();
         }
-      } catch (SQLException e) {
-        e.printStackTrace();
       }
-    }
-    else {
-      response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=" + employeeValid.get("msg"));
+      else {
+        response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=" + employeeValid.get("msg"));
+      }
     }
   }
 }
