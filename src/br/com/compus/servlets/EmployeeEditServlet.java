@@ -59,7 +59,7 @@ public class EmployeeEditServlet extends HttpServlet {
       
   		Map<String, String> employeeValid = DataValidator.validate(name, cpf, email, role, address, phone, password);
       
-      if(client_valid.get("valid").matches("true")) {
+      if(employeeValid.get("valid").matches("true")) {
         Employee employee = new Employee();
         employee.setId(id);
         employee.setName(name);
@@ -90,7 +90,7 @@ public class EmployeeEditServlet extends HttpServlet {
         }
       }
       else {
-        response.sendRedirect(request.getContextPath() + "/funcionario/editar?id=" + id + "&msg" + client_valid.get("msg"));
+        response.sendRedirect(request.getContextPath() + "/funcionario/editar?id=" + id + "&msg" + employeeValid.get("msg"));
       }
     }
 	}

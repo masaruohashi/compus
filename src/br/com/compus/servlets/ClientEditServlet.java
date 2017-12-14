@@ -33,16 +33,16 @@ public class ClientEditServlet extends HttpServlet {
 
       Map<String, String> clientValid = DataValidator.validate(name, cpf, email, "", address, phone, "");
 
-      if(clientValid.get("valid").matches("true")) {
+      if (clientValid.get("valid").matches("true")) {
         Client client = new Client();
-      
+
         client.setId((Integer.parseInt(request.getParameter("id"))));
         client.setAddress(request.getParameter("address"));
         client.setPhone(request.getParameter("phone"));
         client.setCpf(request.getParameter("cpf"));
         client.setEmail(request.getParameter("email"));
         client.setName(request.getParameter("name"));
-        
+
         try {
           if (ClientExistenceValidator.checkExistingClientForEdit(cpf, id)) {
             response.sendRedirect(request.getContextPath() + "/cliente/editar?id=" + id + "&msg=CPF ja cadastrado");
@@ -56,10 +56,10 @@ public class ClientEditServlet extends HttpServlet {
         } catch (SQLException e) {
           e.printStackTrace();
         }
-      }
-      else {
+      } else {
         response.sendRedirect(request.getContextPath() + "/cliente/editar?id=" + id + "&msg=" + clientValid.get("msg"));
       }
+    }
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
