@@ -20,7 +20,7 @@ import br.com.compus.services.DataValidator;
 
 @WebServlet("/funcionario/novo")
 public class EmployeeFormServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
   public EmployeeFormServlet() {
     super();
@@ -47,8 +47,9 @@ public class EmployeeFormServlet extends HttpServlet {
       String role  = request.getParameter("role");
       String address = request.getParameter("address");
       String phone = request.getParameter("phone");
+      String password = request.getParameter("password");
       
-      Map<String, String> employeeValid = DataValidator.validate(name, cpf, email, address, phone);
+      Map<String, String> employeeValid = DataValidator.validate(name, cpf, email, role, address, phone, password);
       
       if (employeeValid.get("valid").matches("true")) {
         Employee employee = new Employee();
@@ -58,6 +59,11 @@ public class EmployeeFormServlet extends HttpServlet {
         employee.setRole(role);
         employee.setAddress(address);
         employee.setPhone(phone);
+        if (role.matches("administrador"))
+          employee.setPassword(password);
+        else
+          employee.setPassword(null);
+        
         try {
           if(EmployeeExistenceValidator.checkExistingEmployeeForCreate(cpf)) {
             response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=CPF ja cadastrado&name=" + name +
@@ -65,10 +71,9 @@ public class EmployeeFormServlet extends HttpServlet {
           }
           else {
             if (EmployeeDAO.getInstance().create(employee)) {
-              
               response.sendRedirect(request.getContextPath() + "/funcionario?msg=Usuario criado com sucesso");
             } else {
-              doGet(request, response);
+              response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=Falha ao criar funcionario");
             }
           }
         } catch (SQLException e) {

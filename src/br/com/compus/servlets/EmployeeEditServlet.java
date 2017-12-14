@@ -20,10 +20,10 @@ import br.com.compus.services.DataValidator;
 @WebServlet("/funcionario/editar")
 public class EmployeeEditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public EmployeeEditServlet() {
-        super();
-    }
+
+	public EmployeeEditServlet() {
+		super();
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	  HttpSession session = request.getSession(false);
@@ -43,9 +43,6 @@ public class EmployeeEditServlet extends HttpServlet {
     }
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	  HttpSession session = request.getSession(false);
     if(session == null || session.getAttribute("admin_name") == null) {
@@ -58,9 +55,11 @@ public class EmployeeEditServlet extends HttpServlet {
       String role = request.getParameter("role");
       String address = request.getParameter("address");
       String phone = request.getParameter("phone");
+      String password = request.getParameter("password");
       
-      Map<String, String> client_valid = DataValidator.validate(name, cpf, email, address, phone);
-      if(client_valid.get("valid").matches("true")) {
+  		Map<String, String> employeeValid = DataValidator.validate(name, cpf, email, role, address, phone, password);
+      
+      if(employeeValid.get("valid").matches("true")) {
         Employee employee = new Employee();
         employee.setId(id);
         employee.setName(name);
@@ -69,6 +68,11 @@ public class EmployeeEditServlet extends HttpServlet {
         employee.setRole(role);
         employee.setAddress(address);
         employee.setPhone(phone);
+        if (role.matches("administrador"))
+		  		employee.setPassword(password);
+        else
+				  employee.setPassword(null);
+        
         try {
           if(EmployeeExistenceValidator.checkExistingEmployeeForEdit(request.getParameter("cpf"), Integer.parseInt(request.getParameter("id")))) {
             response.sendRedirect(request.getContextPath() + "/funcionario/editar?id=" + id + "&msg=CPF ja cadastrado");
@@ -78,7 +82,7 @@ public class EmployeeEditServlet extends HttpServlet {
               response.sendRedirect(request.getContextPath() + "/funcionario?msg=Usuario editado com sucesso");
             }
             else {
-              doGet(request, response);
+  						response.sendRedirect(request.getContextPath() + "/funcionario/editar?msg=Falha ao editar funcionario");
             }	        
           }
         } catch (SQLException e) {
@@ -86,7 +90,7 @@ public class EmployeeEditServlet extends HttpServlet {
         }
       }
       else {
-        response.sendRedirect(request.getContextPath() + "/funcionario/editar?id=" + id + "&msg" + client_valid.get("msg"));
+        response.sendRedirect(request.getContextPath() + "/funcionario/editar?id=" + id + "&msg" + employeeValid.get("msg"));
       }
     }
 	}

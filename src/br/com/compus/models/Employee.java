@@ -8,6 +8,7 @@ public class Employee {
   private String cpf;
   private String address;
   private String phone;
+  private String password;
   public static final String[] ACCEPTED_ROLES = {"vendedor", "montador", "estoquista", "administrador"};
 
   public int getId() {
@@ -67,6 +68,10 @@ public class Employee {
   }
 
   public String getPassword() {
-    return "1234";
+    return this.password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
   }
 }
