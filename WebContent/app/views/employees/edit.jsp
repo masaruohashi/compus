@@ -118,7 +118,11 @@
                 <label>Senha: </label>
               </div>
               <div class="col-sm-9">
-                <input class="user-input pull-right" type="password" name="password" />
+              <% if(employee.getPassword() == null) { %>
+                <input class="user-input pull-right" type="password" name="password"/>
+              <% } else { %>
+                <input class="user-input pull-right" type="password" name="password" value="<%=employee.getPassword() %>"/>
+              <% } %>
               </div>
             </div>
             <div class="row form-buttons">
