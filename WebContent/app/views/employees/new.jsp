@@ -117,7 +117,7 @@
               </div>
               <div class="col-sm-9">
                 <% if(request.getParameter("phone") != null) { %>
-                <input class="user-input pull-right" type="text" name="phone" value="<%=request.getParameter("phone")%>"/>
+                <input class="phone user-input pull-right" type="text" name="phone" value="<%=request.getParameter("phone")%>"/>
                 <% }
                 else { %>
                 <input class="phone user-input pull-right" type="text" name="phone" />
@@ -141,7 +141,7 @@
                 </select>
               </div>
             </div>
-            <div class="row" style="display:none;" id="password">
+            <div class="row .hidden"  id="password">
               <div class="col-sm-3">
                 <label>Senha: </label>
               </div>

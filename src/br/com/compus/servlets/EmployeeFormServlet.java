@@ -62,9 +62,9 @@ public class EmployeeFormServlet extends HttpServlet {
         }
         else {
           if (EmployeeDAO.getInstance().create(employee)) {
-            response.sendRedirect(request.getContextPath() + "/funcionario?msg=Usuario criado com sucesso");
+            response.sendRedirect(request.getContextPath() + "/funcionario?msg=Funcionario criado com sucesso");
           } else {
-            doGet(request, response);
+            response.sendRedirect(request.getContextPath() + "/funcionario/novo?msg=Falha ao criar funcionario");
           }
         }
       } catch (SQLException e) {

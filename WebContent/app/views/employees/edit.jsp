@@ -87,18 +87,18 @@
             </div>
             <div class="row">
               <div class="col-sm-3">
-                <label>Telefone: </label>
-              </div>
-              <div class="col-sm-9">
-                <input class="phone user-input pull-right" type="text" name="phone" value="<%=employee.getPhone() %>" />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
                 <label>Endereço: </label>
               </div>
               <div class="col-sm-9">
                 <input class="user-input pull-right" type="text" name="address" value="<%=employee.getAddress() %>" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <label>Telefone: </label>
+              </div>
+              <div class="col-sm-9">
+                <input class="phone user-input pull-right" type="text" name="phone" value="<%=employee.getPhone() %>" />
               </div>
             </div>
             <div class="row">
@@ -113,7 +113,7 @@
                 </select>
               </div>
             </div>
-            <div class="row" style="display:none;" id="password">
+            <div class="row .hidden" id="password">
               <div class="col-sm-3">
                 <label>Senha: </label>
               </div>

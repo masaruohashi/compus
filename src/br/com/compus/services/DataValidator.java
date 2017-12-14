@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class DataValidator {
 
-  public static Map<String, String> validate(String name, String cpf, String email, String role, String address, String phone, String pwd) {
+  public static Map<String, String> validate(String name, String cpf, String email, String role, String address, String phone, String password) {
     Map<String, String> map = new HashMap<String, String>();
     String invalidField = null;
 
@@ -31,7 +31,7 @@ public class DataValidator {
       map.put("valid", "false");
       invalidField = "telefone";
     }
-    else if (role.matches("administrador") && pwd.isEmpty()) {
+    else if (role.matches("administrador") && password.isEmpty()) {
       map.put("valid", "false");
       invalidField = "senha";
     }
