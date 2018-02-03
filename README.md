@@ -18,6 +18,6 @@ This section helps to install and configure the project and the development envi
 *  Build the project and Run on Server
 
 ## Authors
-*  Rodrigo Masaru Ohashi - [masaruohashi](https://github.com/masaruohashi)
+*  Rodrigo Masaru Ohashi - [rodrigomasaru](https://github.com/rodrigomasaru)
 *  Bruno Eidi Nishimoto - [brunonishimoto](https://github.com/brunonishimoto)
 *  Bruno Yukio Fujita Saito - [BrunoSaito](https://github.com/BrunoSaito)
